@@ -113,7 +113,7 @@ CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
 20-04-16 22:15 +09      36.0    degC    BodyTemperature
 20-04-16 05:40 +09      35.9    degC    BodyTemperature
 20-04-15 05:24 +09      35.9    degC    BodyTemperature
-
+```
 CSV([https://docs.ruby-lang.org/ja/latest/library/csv.html:title]) の普段僕が余り使わない機能を使ったので少しコードの説明。
 
 普段 CSV.parse とか CSV.read で読むと配列の配列になるのでいろいろしていた。
