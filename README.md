@@ -1,48 +1,51 @@
 # format_cda.rb
 apple_health_export and format_cda
 
+# iPhone ‚Ìƒwƒ‹ƒXƒPƒA apple_health_export
+[https://hs9587.hatenablog.com/entry/2020/04/12/215431:title]
+
 iPhone ‚Ìƒwƒ‹ƒXƒPƒA ƒAƒvƒŠA‘Ìd‚Æ‚©‘Ì‰·‚Æ‚©“ü—Í‚µ‚Ä‚é‚ñ‚¾‚¯‚ÇAŠO‚É‚Í‘‚«o‚¹‚È‚¢‚Ì‚©‚ÈB
 
-+ ƒwƒ‹ƒXƒPƒA ƒAƒvƒŠ
-++ uŠT—vv‰æ–Ê
-+++  ‰EŒ¨ lŒ^ƒ}[ƒN
-++ lŒ^ƒ}[ƒN ‰æ–Ê
-+++ ‰æ–ÊÅ‰º•”‚Éu‚·‚×‚Ä‚Ìƒwƒ‹ƒXƒPƒAƒf[ƒ^‚ğ‘‚«o‚·vƒŠƒ“ƒN
-++++ ‰Ÿ‰º
-+++ uƒwƒ‹ƒXƒPƒAƒf[ƒ^‚ğ‘‚«o‚·vƒ_ƒCƒAƒ[ƒO
-++++ u‘‚«o‚·v–t
-+++++ ‰Ÿ‰º
-+++ ‘‚«o‚µ’†
-+++ u‘‚«o‚µ‚½ƒf[ƒ^vzipƒf[ƒ^
-++++ ‘—‚èæ‘I‘ğ
----- ƒ[ƒ‹‚Æ‚©ƒƒbƒZ[ƒW‚©‚È‚ A‚ ‚é‚¢‚Í"ƒtƒ@ƒCƒ‹"‚É•Û‘¶
----- ƒtƒ@ƒCƒ‹–¼’ˆÓu‘‚«o‚µ‚½ƒf[ƒ^.zipv‘O‚Ì‚ª‚ ‚é‚Æ’u‚«Š·‚¦‚é
-+++ •Û‘¶‚µ‚Ü‚µ‚½
-++ lŒ^ƒ}[ƒN‰æ–ÊuŠ®—¹v
-+++ ‰Ÿ‰º
-++ uŠT—vv‰æ–Ê
+1. ƒwƒ‹ƒXƒPƒA ƒAƒvƒŠ
+  1. uŠT—vv‰æ–Ê
+    1.  ‰EŒ¨ lŒ^ƒ}[ƒN
+  2. lŒ^ƒ}[ƒN ‰æ–Ê
+    1. ‰æ–ÊÅ‰º•”‚Éu‚·‚×‚Ä‚Ìƒwƒ‹ƒXƒPƒAƒf[ƒ^‚ğ‘‚«o‚·vƒŠƒ“ƒN
+      1. ‰Ÿ‰º
+    2. uƒwƒ‹ƒXƒPƒAƒf[ƒ^‚ğ‘‚«o‚·vƒ_ƒCƒAƒ[ƒO
+      1. u‘‚«o‚·v–t
+        1. ‰Ÿ‰º
+    3. ‘‚«o‚µ’†
+    4. u‘‚«o‚µ‚½ƒf[ƒ^vzipƒf[ƒ^
+      1. ‘—‚èæ‘I‘ğ
+      - ƒ[ƒ‹‚Æ‚©ƒƒbƒZ[ƒW‚©‚È‚ A‚ ‚é‚¢‚Í"ƒtƒ@ƒCƒ‹"‚É•Û‘¶
+      - ƒtƒ@ƒCƒ‹–¼’ˆÓu‘‚«o‚µ‚½ƒf[ƒ^.zipv‘O‚Ì‚ª‚ ‚é‚Æ’u‚«Š·‚¦‚é
+    5. •Û‘¶‚µ‚Ü‚µ‚½
+  3. lŒ^ƒ}[ƒN‰æ–ÊuŠ®—¹v
+    1. ‰Ÿ‰º
+  4. uŠT—vv‰æ–Ê
 
 ‚Æ‚µ‚ÄAƒf[ƒ^‚ªƒtƒ@ƒCƒ‹‚Åè‚É“ü‚éB‰½‚Æ‚©‚µ‚Ä PC‚É‚Á‚Ä—ˆ‚æ‚¤B
 
 Windows PowerShell
->|PowerShell|
+```PowerShell
 > Expand-Archive .\‘‚«o‚µ‚½ƒf[ƒ^.zip
-||<
->|PowerShell|
+```
+```PowerShell
 \‘‚«o‚µ‚½ƒf[ƒ^> tree /F
 ƒtƒHƒ‹ƒ_[ ƒpƒX‚Ìˆê——
 cc
 „¤„Ÿapple_health_export
         export.xml
         export_cda.xml
-||<
+```
 XML ƒf[ƒ^B
 Œ©‚½‚¢‚ ‚½‚è CSV ‚É‚µ‚Ü‚µ‚å‚¤‚©B
 
 export_cda.xml ‚ª“ü—Íƒf[ƒ^‚Á‚Û‚¢A¡“ú‚Í‚»‚ê‚ğ“Ç‚ŞBexport.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚Å©“®ûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©A“ü‚Á‚Ä‚é‚İ‚½‚¢B
 
 helth_care_data.rb
->|ruby|
+```ruby
 require 'rexml/document'
 
 REXML::Document.new(ARGF.read) \
@@ -63,21 +66,20 @@ REXML::Document.new(ARGF.read) \
 #  .sort \
   .join("\n") \
   .display
-||<
+```
 XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚ ‚é‚Ì‚Å #attributes.values ‚Å’l‚ğæ‚éA‚»‚¤‚·‚é‚Æ”z—ñ‚É‚È‚é‚Ì‚¾‚ªA‘®«‚ªˆê‚Â‚µ‚©‚È‚¢‚Ì‚Å‚Ü‚ ‰½‚Æ‚©‚È‚éB
->|PowerShell|
+```PowerShell
 >ruby helth_care_data.rb ‘‚«o‚µ‚½ƒf[ƒ^\apple_health_export\export_cda.xml
-||<
+```
 ‚±‚ñ‚ÈŠ´‚¶‚©‚ÈB
 
-** ®Œ`•Ê‹L
+# apple_health_export o—Í‚Ì®Œ`
 [https://hs9587.hatenablog.com/entry/2020/04/19/140001:title]
 
-‘O‰ñ
-[https://hs9587.hatenablog.com/entry/2020/04/12/215431:title]
+‘O’i
 iPhone ‚É“ü‚ê‚½ƒwƒ‹ƒXƒPƒAî•ñ‚ğ csv ‚Éo—ˆ‚½B
 ‚»‚¤‚·‚é‚Æ‚±‚ñ‚ÈŠ´‚¶‚É‚È‚é
->|csv|
+```csv
 20200418053000+0900,35.9,degC,HKQuantityTypeIdentifierBodyTemperature
 20200417211100+0900,36,degC,HKQuantityTypeIdentifierBodyTemperature
 20200417155800+0900,36.1,degC,HKQuantityTypeIdentifierBodyTemperature
@@ -85,11 +87,11 @@ iPhone ‚É“ü‚ê‚½ƒwƒ‹ƒXƒPƒAî•ñ‚ğ csv ‚Éo—ˆ‚½B
 20200416221500+0900,36,degC,HKQuantityTypeIdentifierBodyTemperature
 20200416054000+0900,35.9,degC,HKQuantityTypeIdentifierBodyTemperature
 20200415052400+0900,35.9,degC,HKQuantityTypeIdentifierBodyTemperature
-||<
+```
 \•ª‚í‚©‚èˆÕ‚¢Œ`‚¾‚ªAƒRƒ“ƒsƒ…[ƒ^[‚Å“Ç‚Ş‚Ì‚Å‚Í‚È‚­Al‚ªŒ©‚é‚È‚ç‚à‚¤­‚µ®Œ`‚µ‚Ä‚à—Ç‚¢B
 
 format_cda.rb
->|ruby|
+```ruby
 require 'csv'
 require 'time'
 
@@ -101,9 +103,9 @@ CSV::Converters.merge!( {
 } )
 
 CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
-||<
+```
 ‚»‚¤‚·‚é‚Æ‚±‚ñ‚ÈŠ´‚¶
->|csv|
+```csv
 20-04-18 05:30 +09      35.9    degC    BodyTemperature
 20-04-17 21:11 +09      36.0    degC    BodyTemperature
 20-04-17 15:58 +09      36.1    degC    BodyTemperature
@@ -111,7 +113,7 @@ CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
 20-04-16 22:15 +09      36.0    degC    BodyTemperature
 20-04-16 05:40 +09      35.9    degC    BodyTemperature
 20-04-15 05:24 +09      35.9    degC    BodyTemperature
-||<
+
 CSV([https://docs.ruby-lang.org/ja/latest/library/csv.html:title]) ‚Ì•’i–l‚ª—]‚èg‚í‚È‚¢‹@”\‚ğg‚Á‚½‚Ì‚Å­‚µƒR[ƒh‚Ìà–¾B
 
 •’i CSV.parse ‚Æ‚© CSV.read ‚Å“Ç‚Ş‚Æ”z—ñ‚Ì”z—ñ‚É‚È‚é‚Ì‚Å‚¢‚ë‚¢‚ë‚µ‚Ä‚¢‚½B
@@ -125,19 +127,19 @@ CSV([https://docs.ruby-lang.org/ja/latest/library/csv.html:title]) ‚Ì•’i–l‚ª—]‚
 ‘®‚Ì•ÏŠ·‚É‚Í converters: ƒIƒvƒVƒ‡ƒ“‚Æ CSV::Converters
 [https://docs.ruby-lang.org/ja/latest/class/CSV.html#C_-CONVERTERS] ‚ğg‚Á‚Ä‚İ‚éB
 ƒRƒ“ƒ”ƒ@[ƒ^[‚ÌÀ‘•
->|ruby|
+```ruby
   row3: ->(cell, info){ info.index != 3 ? cell : cell[24..-1]   },
   row1: ->(cell, info){ info.index != 1 ? cell : '%2.1f' % cell },
   row0: ->(cell, info){ info.index != 0 ? cell : \
           Time.parse(cell).strftime('%Y-%m-%d %H:%M %z')[2..-3] },
-||<
+```
 ‚»‚Ì“K—pA—ñ”‚Ìw’è‚Æ‚©‚Í‚È‚¢‚İ‚½‚¢B‚Ç‚Ì—ñ‚É‚à‚İ‚ñ‚È“K—p‚³‚ê‚é‚Ì‚Å‘æ“ñˆø”‚©‚ç—ñ”‚ğŠm”F‚·‚éBu?vO€‰‰Zq(
 [https://docs.ruby-lang.org/ja/latest/doc/spec=2foperator.html#cond]
 )A–{“–‚Í”Û’è‚ÌğŒ‚Í”ğ‚¯‚é‚×‚«‚È‚ñ‚¾‚ªA‰Â•Ï•”‚ğŒã‚ë‚É‚µ‚½•û‚ª•ª‚©‚èˆÕ‚¢‚©‚Æ‚»‚¤‚µ‚½B“ñ—ñ–Ú row2 ‚Í˜Ô‚È‚Ì‚Å‘‚©‚È‚¢B
 
 ƒRƒ“ƒ”ƒ@[ƒ^[‚ğg‚¤‚±‚Æ‚É‚µ‚½‚çACSV.filter ‚ÌƒuƒƒbƒN‚Å‚â‚é‚±‚Æ‚ª–³‚­‚È‚Á‚½‚Ì‚Å‹ó‚Á‚Û‚ÌƒuƒƒbƒN‚ğ•t‚¯‚éu {} v
->|ruby|
+```ruby
 CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
-||<
+```
 ‹ó‚Á‚Û‚ÌƒuƒƒbƒN‚Á‚ÄA‘¼‚É‚È‚ñ‚©‘‚«•û–³‚¢‚Ì‚©‚ÈB
 
