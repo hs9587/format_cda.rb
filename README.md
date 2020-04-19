@@ -39,7 +39,7 @@ Windows PowerShell
         export.xml
         export_cda.xml
 ```
-XML ƒf[ƒ^B
+XML ƒf[ƒ^B  
 Œ©‚½‚¢‚ ‚½‚è CSV ‚É‚µ‚Ü‚µ‚å‚¤‚©B
 
 export_cda.xml ‚ª“ü—Íƒf[ƒ^‚Á‚Û‚¢A¡“ú‚Í‚»‚ê‚ð“Ç‚ÞBexport.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚ÅŽ©“®ŽûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©A“ü‚Á‚Ä‚é‚Ý‚½‚¢B
@@ -76,8 +76,9 @@ XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚
 # apple_health_export o—Í‚Ì®Œ`
 [https://hs9587.hatenablog.com/entry/2020/04/19/140001]
 
-‘O’i
+‘O’i  
 iPhone ‚É“ü‚ê‚½ƒwƒ‹ƒXƒPƒAî•ñ‚ð csv ‚Éo—ˆ‚½B
+
 ‚»‚¤‚·‚é‚Æ‚±‚ñ‚ÈŠ´‚¶‚É‚È‚é
 ```csv
 20200418053000+0900,35.9,degC,HKQuantityTypeIdentifierBodyTemperature
@@ -126,6 +127,7 @@ CSV([https://docs.ruby-lang.org/ja/latest/library/csv.html]) ‚Ì•’i–l‚ª—]‚èŽg‚í‚
 
 ‘Ž®‚Ì•ÏŠ·‚É‚Í converters: ƒIƒvƒVƒ‡ƒ“‚Æ CSV::Converters
 [https://docs.ruby-lang.org/ja/latest/class/CSV.html#C_-CONVERTERS] ‚ðŽg‚Á‚Ä‚Ý‚éB
+
 ƒRƒ“ƒ”ƒ@[ƒ^[‚ÌŽÀ‘•
 ```ruby
   row3: ->(cell, info){ info.index != 3 ? cell : cell[24..-1]   },
