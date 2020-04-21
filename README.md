@@ -145,3 +145,9 @@ CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
 ```
 空っぽのブロックって、他になんか書き方無いのかな。
 
+# おまけ
+
+head の代わり
+```ruby
+| ruby -pe "exit if $.==8"
+```
