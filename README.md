@@ -98,7 +98,7 @@ require 'time'
 
 CSV::Converters.merge!( {
   row3: ->(cell, info){ info.index != 3 ? cell : cell[24..-1]   },
-  row1: ->(cell, info){ info.index != 1 ? cell : '%2.1f' % cell },
+  row1: ->(cell, info){ info.index != 1 ? cell : '%6.1f' % cell },
   row0: ->(cell, info){ info.index != 0 ? cell : \
           Time.parse(cell).strftime('%Y-%m-%d %H:%M %z')[2..-3] },
 } )
