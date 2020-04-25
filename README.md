@@ -145,6 +145,30 @@ CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
 ```
 空っぽのブロックって、他になんか書き方無いのかな。
 
+# latest_cda.rb
+だんだん数字溜まってきて、種類別に最近の 1,2週間分だけ集めて、紙1枚分にまとめようかな。そしたらなんか憶えもメモしとこうか、年齢計算とか。
+```ruby
+cdas = File.read(ARGV[0]).split "\n"
+
+temperatures = cdas.select{ |cda| /Temperature/ =~ cda }
+pressures    = cdas.select{ |cda| /Pressure/    =~ cda }
+masses       = cdas.select{ |cda| /Mass/        =~ cda }
+
+hs = Time.local *ARGV[1..3]
+[
+  "#{ARGV[4]}, #{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970}), #{ARGV[5..-1].join(', ')}",
+  '',
+  temperatures.take(20),
+  '',
+  pressures.sort.reverse.take(30),
+  '',
+  masses.take(10),
+] \
+  .flatten.join("\n").display
+```
+ARGV 最初の引数にデータソースのファイル名、前掲 format_cda.rb の出力。
+そして三つの引数に生年月日をその順に、続く引数幾つかを前後にメモする。
+
 # おまけ
 
 head の代わり
