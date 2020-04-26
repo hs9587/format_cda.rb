@@ -160,11 +160,11 @@ birthday = "#{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970})"
 [
   ARGV[4..-1].insert(1, birthday).join(', '),
   '',
-  temperatures.take(20),
+  temperatures.take(27),
   '',
-  pressures.sort.reverse.take(30),
+  pressures.sort.reverse.take(14),
   '',
-  masses.take(10),
+  masses.take(13),
 ] \
   .flatten.join("\n").display
 ```
