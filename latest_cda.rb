@@ -12,8 +12,8 @@ birthday = "#{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970})"
   '',
   temperatures.take(27),
   '',
-  pressures.sort.reverse.take(14),
+  pressures.sort.reverse.take(18),
   '',
-  masses.take(13),
+  masses.take(15),
 ] \
   .flatten.join("\n").display
