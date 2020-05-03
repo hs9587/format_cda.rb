@@ -4,7 +4,7 @@ temperatures = cdas.select{ |cda| /Temperature/ =~ cda }
 pressures    = cdas.select{ |cda| /Pressure/    =~ cda }
 masses       = cdas.select{ |cda| /Mass/        =~ cda }
 
-hs = Time.local *(ARGV[1].split('/'))
+hs = Time.local *(ARGV[1].split(/\D/))
 birthday = "#{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970})"
 
 [
