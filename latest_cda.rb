@@ -11,6 +11,7 @@ t, p, m = ARGV[2].to_s.split /\D/
 
 [
   ARGV[3..-1].to_a.insert(1, birthday).compact.join(', '),
+    # .to_a .compact は ARGV[3 以降] が無かった時対策
   '',
   temperatures.take(t ? t.to_i : 27),
   '',
