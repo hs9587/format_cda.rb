@@ -8,7 +8,7 @@ hs = Time.local *(ARGV[1].split('/'))
 birthday = "#{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970})"
 
 [
-  ARGV[2..-1].insert(1, birthday).join(', '),
+  ARGV[3..-1].to_a.insert(1, birthday).compact.join(', '),
   '',
   temperatures.take(27),
   '',
