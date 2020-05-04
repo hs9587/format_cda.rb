@@ -172,7 +172,7 @@ t, p, m = ARGV[2].to_s.split /\D/
   .flatten.join("\n").display
 
 ```
-ARGV 最初の引数にデータソースのファイル名、前掲 format_cda.rb の出力。
+ARGV 最初の引数にデータソースのファイル名、前掲 format_cda.rb の出力。  
 次の引数に生年月日、適宜非数字文字で区切る。
 ```ruby
 cdas = File.read(ARGV[0]).split "\n"
@@ -180,13 +180,14 @@ cdas = File.read(ARGV[0]).split "\n"
 ```ruby
 hs = Time.local *(ARGV[1].split /\D/)
 ```
-#read とか #split とか #local でエラーになるのでここまでは必須。
+#read とか #split とか #local でエラーになるし、引数ここまでは必須ということに。
 
-第 3引数に、体温血圧体重の行数をその順に、非数字文字で区切って。
+第3引数に、体温血圧体重の表示行数をその順に、非数字文字で区切って。
 ```ruby
 t, p, m = ARGV[2].to_s.split /\D/
 ```
 引数無いと #to_s が走って全部 nil が入る。
+或いは少なかったりで nil だと、続く #take 内の三項演算子で既定値にすり替わる。
 
 
 
