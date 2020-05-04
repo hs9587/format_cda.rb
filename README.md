@@ -154,21 +154,43 @@ temperatures = cdas.select{ |cda| /Temperature/ =~ cda }
 pressures    = cdas.select{ |cda| /Pressure/    =~ cda }
 masses       = cdas.select{ |cda| /Mass/        =~ cda }
 
-hs = Time.local *ARGV[1..3]
+hs = Time.local *(ARGV[1].split /\D/)
 birthday = "#{hs.strftime '%Y/%m/%d'} (#{Time.at(Time.now - hs).year - 1970})"
 
+t, p, m = ARGV[2].to_s.split /\D/
+
 [
-  ARGV[4..-1].insert(1, birthday).join(', '),
+  ARGV[3..-1].to_a.insert(1, birthday).compact.join(', '),
+    # .to_a .compact は ARGV[3 以降] が無かった時対策
   '',
-  temperatures.take(27),
+  temperatures.take(t ? t.to_i : 25),
   '',
-  pressures.sort.reverse.take(14),
+  pressures.sort.reverse.take(p ? p.to_i : 16),
   '',
-  masses.take(13),
+  masses.take(m ? m.to_i : 13),
 ] \
   .flatten.join("\n").display
+
 ```
 ARGV 最初の引数にデータソースのファイル名、前掲 format_cda.rb の出力。
+次の引数に生年月日、適宜非数字文字で区切る。
+```ruby
+cdas = File.read(ARGV[0]).split "\n"
+```
+```ruby
+hs = Time.local *(ARGV[1].split /\D/)
+```
+#read とか #split とか #local でエラーになるのでここまでは必須。
+
+第 3引数に、体温血圧体重の行数をその順に、非数字文字で区切って。
+```ruby
+t, p, m = ARGV[2].to_s.split /\D/
+```
+引数無いと #to_s が走って全部 nil が入る。
+
+
+
+
 そして三つの引数に生年月日をその順に、続く引数幾つかを前後にメモする。
 
 # おまけ
