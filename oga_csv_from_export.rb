@@ -1,5 +1,5 @@
 require 'oga'
-# csv from export: require Oga. 6sec(nano)
+# csv from export: require Oga. 6sec(nano) Ruby 2.4.5
 # <-  900sec(CF-RZ6) REXML Ruby 2.4.4
 # <- 3800sec(CF-S10) REXML Ruby 1.9.3
 
