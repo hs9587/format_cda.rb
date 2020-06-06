@@ -201,6 +201,39 @@ t, p, m = ARGV[2].to_s.split /\D/
 ```
 #to_a #compact は ARGV[3 以降] が無かった時対策。
 
+# csv_from_export.rb
+前述 export.xml の方をCSV にする。
+
+csv_from_export.rb
+```ruby
+require 'rexml/document'
+
+REXML::Document.new(ARGF.read) \
+  .root \
+  .get_elements('//Record') \
+  .map do |record|
+    #record.attributes.inspect
+    #record.attribute('type').value
+    %w[value unit startDate endDate type] \
+    .map do |name|
+      record.attribute(name).value.sub('HKQuantityTypeIdentifier','')
+    end \
+    .join(',')
+  end \
+  .join("\n") \
+  .display
+
+```
+あと、スクリプト暴徒末尾に計時用の errプリント。
+
+プログラムの説明をするまでもないと思うが、データについてちょっとコメント。
+基本的に、Record要素が並んでいるのだが。
+血圧は、最高血圧(Systolic)と最低血圧(Diastolic)がフラットに並んでいるのと、
+Correlation要素の中に二つずつ組になってるのと、二重に記述されている。
+プログラムでは Correlationタグのことは気にとめないで CSV にはそのまま二重に出て来る。
+ちなみに元の配置場所が随分違う(フラットのは前の方、組になってるのは最後)ので、
+出て来る所も離れてる。
+
 
 # おまけ
 
