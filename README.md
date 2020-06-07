@@ -234,6 +234,27 @@ Correlation要素の中に二つずつ組になってるのと、二重に記述されている。
 ちなみに元の配置場所が随分違う(フラットのは前の方、組になってるのは最後)ので、
 出て来る所も離れてる。
 
+## oga_csv_from_export.rb
+```ruby
+require 'oga'
+
+Oga::XML::Parser.new(ARGF.read) \
+  .parse \
+  .xpath('//Record') \
+  .map do |record|
+    %w[value unit startDate endDate type] \
+    .map do |key|
+      record[key].sub('HKQuantityTypeIdentifier','')
+    end \
+    .join(',')
+  end \
+  .join("\n") \
+  .display
+```
+# csv from export: require Oga. 6sec(nano) Ruby 2.4.5
+# <-  900sec(CF-RZ6) REXML Ruby 2.4.4
+# <- 3800sec(CF-S10) REXML Ruby 1.9.3
+# grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
 
 # おまけ
 
