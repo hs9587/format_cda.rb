@@ -42,14 +42,16 @@ Windows PowerShell
 XML ƒf[ƒ^B  
 Œ©‚½‚¢‚ ‚½‚è CSV ‚É‚µ‚Ü‚µ‚å‚¤‚©B
 
-export_cda.xml ‚ª“ü—Íƒf[ƒ^‚Á‚Û‚¢A¡“ú‚Í‚»‚ê‚ğ“Ç‚ŞBexport.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚Å©“®ûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©A“ü‚Á‚Ä‚é‚İ‚½‚¢B
+export_cda.xml ‚ª“ü—Íƒf[ƒ^‚Á‚Û‚¢A¡“ú‚Í‚»‚ê‚ğ“Ç‚ŞB
+export.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚Å©“®ûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©A“ü‚Á‚Ä‚é‚İ‚½‚¢B
+[•Ê‚Ì‚â‚Â csv_from_export.rb](#•Ê‚Ì‚â‚Â-csv_from_export.rb)
 
 ## –ÚŸ
 - [format_cda.rb](#format_cda.rb)
 - [iPhone ‚Ìƒwƒ‹ƒXƒPƒA apple_health_export](#iPhone-‚Ìƒwƒ‹ƒXƒPƒA-apple_health_export)
   - [–ÚŸ](#–ÚŸ)
 - [CSV‰» helth_care_data.rb](#CSV‰»-helth_care_data.rb)
-- [apple_health_export o—Í‚Ì®Œ`](#apple_health_export-o—Í‚Ì®Œ`)
+- [apple_health_export o—Í‚Ì®Œ` format_cda](#apple_health_export-o—Í‚Ì®Œ`-format_cda)
 - [Å‹ß1–‡•ª latest_cda.rb](#Å‹ß1–‡•ª-latest_cda.rb)
 - [•Ê‚Ì‚â‚Â csv_from_export.rb](#•Ê‚Ì‚â‚Â-csv_from_export.rb)
   - [oga_csv_from_export.rb](#oga_csv_from_export.rb)
@@ -85,7 +87,7 @@ XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚
 ‚±‚ñ‚ÈŠ´‚¶‚©‚ÈB
 
 
-# apple_health_export o—Í‚Ì®Œ`
+# apple_health_export o—Í‚Ì®Œ` format_cda
 [https://hs9587.hatenablog.com/entry/2020/04/19/140001]
 
 ‘O’i  
