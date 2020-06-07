@@ -45,7 +45,7 @@ XML データ。
 export_cda.xml が入力データっぽい、今日はそれを読む。export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか、入ってるみたい。
 
 helth_care_data.rb
-```ruby
+```ruby:helth_care_data.rb
 require 'rexml/document'
 
 REXML::Document.new(ARGF.read) \
@@ -93,7 +93,7 @@ iPhone に入れたヘルスケア情報を csv に出来た。
 十分わかり易い形だが、コンピューターで読むのではなく、人が見るならもう少し整形しても良い。
 
 format_cda.rb
-```ruby
+```ruby:format_cda.rb
 require 'csv'
 require 'time'
 
@@ -150,7 +150,7 @@ CSV.filter(out_col_sep: "\t", converters: [:row0, :row1, :row3]) {}
 # latest_cda.rb
 
 だんだん数字溜まってきて、種類別に最近の 1,2週間分だけ集めて、紙1枚分にまとめようかな。そしたらなんか憶えもメモしとこうか、年齢計算とか。
-```ruby
+```ruby:latest_cda.rb
 cdas = File.read(ARGV[0]).split "\n"
 
 temperatures = cdas.select{ |cda| /Temperature/ =~ cda }
@@ -205,7 +205,7 @@ t, p, m = ARGV[2].to_s.split /\D/
 前述 export.xml の方をCSV にする。
 
 csv_from_export.rb
-```ruby
+```ruby:csv_from_export.rb
 require 'rexml/document'
 
 REXML::Document.new(ARGF.read) \
@@ -254,14 +254,16 @@ Oga::XML::Parser.new(ARGF.read) \
 標準添付の REXML がちょっと遅いので、
 Ogaジェムをインストールしてやってみた、Cエクステンションあり、その他ライブラリ不使用。
 <pre>
-    csv from export: require Oga. 6sec(nano) Ruby 2.4.5
-    <-  900sec(CF-RZ6) REXML Ruby 2.4.4
-    <- 3800sec(CF-S10) REXML Ruby 1.9.3
+ csv from export: require Oga. 6sec(nano) Ruby 2.4.5
+ <-  900sec(CF-RZ6) REXML Ruby 2.4.4
+ <- 3800sec(CF-S10) REXML Ruby 1.9.3
 </pre>
 桁が違う程の早さだが、それでも秒の単位の時間が掛かる
 
 それで歩数の日別集計、grepキーワードを Climbed にすると上がった階数、Distance でウォーキングランニングの距離。
-    grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
+<pre>
+ grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
+</pre>
 
 # おまけ
 
