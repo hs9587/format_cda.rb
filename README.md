@@ -50,15 +50,15 @@ export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか
 - [format_cda.rb](#format_cdarb)
 - [iPhone のヘルスケア apple_health_export](#iPhone-のヘルスケア-apple_health_export)
   - [目次](#目次)
-- [CSV化 helth_care_data.rb](#CSV化-helth_care_datarb)
+- [CSV化 csv_from_export_cda.rb](#CSV化-csv_from_export_cdarb)
 - [apple_health_export 出力の整形 format_cda.rb](#apple_health_export-出力の整形-format_cdarb)
 - [最近1枚分 latest_cda.rb](#最近1枚分-latest_cdarb)
 - [別のやつ csv_from_export.rb](#別のやつ-csv_from_exportrb)
   - [oga_csv_from_export.rb](#oga_csv_from_exportrb)
 - [おまけ](#おまけ)
 
-# CSV化 helth_care_data.rb
-```ruby:helth_care_data.rb
+# CSV化 csv_from_export_cda.rb
+```ruby:csv_from_export_cda.rb
 require 'rexml/document'
 
 REXML::Document.new(ARGF.read) \
@@ -82,7 +82,7 @@ REXML::Document.new(ARGF.read) \
 ```
 XML項目の説明は特にしないが、日付 observation/effectiveTime/high は属性値に値があるので #attributes.values で値を取る、そうすると配列になるのだが、属性が一つしかないのでまあ何とかなる。
 ```PowerShell
->ruby helth_care_data.rb 書き出したデータ\apple_health_export\export_cda.xml
+>ruby csv_from_export_cda.rb 書き出したデータ\apple_health_export\export_cda.xml
 ```
 こんな感じかな。
 
