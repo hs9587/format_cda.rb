@@ -251,13 +251,15 @@ Oga::XML::Parser.new(ARGF.read) \
   .join("\n") \
   .display
 ```
-表人添付の REXML がちょっと遅いので、
+標準添付の REXML がちょっと遅いので、
 Ogaジェムをインストールしてやってみた、Cエクステンションあり、その他ライブラリ不使用。
- csv from export: require Oga. 6sec(nano) Ruby 2.4.5
- <-  900sec(CF-RZ6) REXML Ruby 2.4.4
- <- 3800sec(CF-S10) REXML Ruby 1.9.3
-それで歩数の日別集計、grepキーワードを Crimeb にすると上がった階数
- grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
+    csv from export: require Oga. 6sec(nano) Ruby 2.4.5
+    <-  900sec(CF-RZ6) REXML Ruby 2.4.4
+    <- 3800sec(CF-S10) REXML Ruby 1.9.3
+桁が違う程の早さだが、それでも秒の単位の時間が掛かる
+
+それで歩数の日別集計、grepキーワードを Climbed にすると上がった階数、Distance でウォーキングランニングの距離。
+    grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
 
 # おまけ
 
