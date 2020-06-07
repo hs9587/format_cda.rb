@@ -44,6 +44,14 @@ XML データ。
 
 export_cda.xml が入力データっぽい、今日はそれを読む。export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか、入ってるみたい。
 
+- [format_cda.rb](#format_cda.rb)
+- [iPhone のヘルスケア apple_health_export](#iPhone-のヘルスケア-apple_health_export)
+- [apple_health_export 出力の整形](#apple_health_export-出力の整形)
+- [latest_cda.rb](#latest_cda.rb)
+- [csv_from_export.rb](#csv_from_export.rb)
+  - [oga_csv_from_export.rb](#oga_csv_from_export.rb)
+- [おまけ](#おまけ)
+
 helth_care_data.rb
 ```ruby:helth_care_data.rb
 require 'rexml/document'
