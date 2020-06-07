@@ -47,14 +47,14 @@ export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか
 ([別のやつ csv_from_export.rb](#別のやつ-csv_from_export.rb))
 
 ## 目次
-- [format_cda.rb](#format_cda.rb)
+- [format_cda.rb](#format_cdarb)
 - [iPhone のヘルスケア apple_health_export](#iPhone-のヘルスケア-apple_health_export)
   - [目次](#目次)
-- [CSV化 helth_care_data.rb](#CSV化-helth_care_data.rb)
+- [CSV化 helth_care_data.rb](#CSV化-helth_care_datarb)
 - [apple_health_export 出力の整形 format_cda](#apple_health_export-出力の整形-format_cda)
-- [最近1枚分 latest_cda.rb](#最近1枚分-latest_cda.rb)
-- [別のやつ csv_from_export.rb](#別のやつ-csv_from_export.rb)
-  - [oga_csv_from_export.rb](#oga_csv_from_export.rb)
+- [最近1枚分 latest_cda.rb](#最近1枚分-latest_cdarb)
+- [別のやつ csv_from_export.rb](#別のやつ-csv_from_exportrb)
+  - [oga_csv_from_export.rb](#oga_csv_from_exportrb)
 - [おまけ](#おまけ)
 
 # CSV化 helth_care_data.rb
