@@ -44,7 +44,7 @@ XML データ。
 
 export_cda.xml が入力データっぽい、今日はそれを読む。  
 export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか、入ってるみたい。
-([別のやつ csv_from_export.rb](#別のやつ-csv_from_export.rb))
+([別のやつ csv_from_export.rb](#別のやつ-csv_from_exportrb))
 
 ## 目次
 - [format_cda.rb](#format_cdarb)
