@@ -51,7 +51,7 @@ export.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚Å©“®ûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©
 - [iPhone ‚Ìƒwƒ‹ƒXƒPƒA apple_health_export](#iPhone-‚Ìƒwƒ‹ƒXƒPƒA-apple_health_export)
   - [–ÚŸ](#–ÚŸ)
 - [CSV‰» helth_care_data.rb](#CSV‰»-helth_care_datarb)
-- [apple_health_export o—Í‚Ì®Œ` format_cda](#apple_health_export-o—Í‚Ì®Œ`-format_cda)
+- [apple_health_export o—Í‚Ì®Œ` format_cda.rb](#apple_health_export-o—Í‚Ì®Œ`-format_cdarb)
 - [Å‹ß1–‡•ª latest_cda.rb](#Å‹ß1–‡•ª-latest_cdarb)
 - [•Ê‚Ì‚â‚Â csv_from_export.rb](#•Ê‚Ì‚â‚Â-csv_from_exportrb)
   - [oga_csv_from_export.rb](#oga_csv_from_exportrb)
@@ -87,7 +87,7 @@ XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚
 ‚±‚ñ‚ÈŠ´‚¶‚©‚ÈB
 
 
-# apple_health_export o—Í‚Ì®Œ` format_cda
+# apple_health_export o—Í‚Ì®Œ` format_cda.rb
 [https://hs9587.hatenablog.com/entry/2020/04/19/140001]
 
 ‘O’i  
