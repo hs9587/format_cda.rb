@@ -235,7 +235,7 @@ Correlation要素の中に二つずつ組になってるのと、二重に記述されている。
 出て来る所も離れてる。
 
 ## oga_csv_from_export.rb
-```ruby
+```ruby:oga_csv_from_export.rb
 require 'oga'
 
 Oga::XML::Parser.new(ARGF.read) \
@@ -253,9 +253,11 @@ Oga::XML::Parser.new(ARGF.read) \
 ```
 標準添付の REXML がちょっと遅いので、
 Ogaジェムをインストールしてやってみた、Cエクステンションあり、その他ライブラリ不使用。
+<pre>
     csv from export: require Oga. 6sec(nano) Ruby 2.4.5
     <-  900sec(CF-RZ6) REXML Ruby 2.4.4
     <- 3800sec(CF-S10) REXML Ruby 1.9.3
+</pre>
 桁が違う程の早さだが、それでも秒の単位の時間が掛かる
 
 それで歩数の日別集計、grepキーワードを Climbed にすると上がった階数、Distance でウォーキングランニングの距離。
