@@ -7,13 +7,13 @@ class Counts < Hash
     when 'BodyMass', 'BloodPressureSystolic', 'BloodPressureDiastolic' \
       , 'BodyTemperature' then
       self[key] = self[key] ? self[key] << row : [row]
-    when 'StepCount', 'FlightsClimbed' then
+    when 'StepCount', 'FlightsClimbed' then # sum of integer
       self[key] = if self[key] then
         [self[key][0] + row[0].to_i, self[key][1]]
       else# self[key] = if self[key]
         [row[0].to_i, row[1]] 
       end # self[key] = if self[key]
-    when 'DistanceWalkingRunning' then
+    when 'DistanceWalkingRunning' then # sum of float
       self[key] = if self[key] then
         [self[key][0] + row[0].to_f, self[key][1]]
       else# self[key] = if self[key]
