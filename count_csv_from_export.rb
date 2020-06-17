@@ -8,9 +8,17 @@ class Counts < Hash
       , 'BodyTemperature' then
       self[key] = self[key] ? self[key] << row : [row]
     when 'StepCount', 'FlightsClimbed' then
-      self[key] = self[key].to_i + row[0].to_i
+      self[key] = if self[key] then
+        [self[key][0] + row[0].to_i, self[key][1]]
+      else# self[key] = if self[key]
+        [row[0].to_i, row[1]] 
+      end # self[key] = if self[key]
     when 'DistanceWalkingRunning' then
-      self[key] = self[key].to_f + row[0].to_f
+      self[key] = if self[key] then
+        [self[key][0] + row[0].to_f, self[key][1]]
+      else# self[key] = if self[key]
+        [row[0].to_f, row[1]] 
+      end # self[key] = if self[key]
     when 'HeadphoneAudioExposure' then
       self[key] = self[key] ? self[key] << row : [row]
     else
