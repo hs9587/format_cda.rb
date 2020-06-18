@@ -4,8 +4,8 @@ require 'time'
 class Counts < Hash
   def add(row)
     case key = row[4]
-    when 'BodyMass', 'BloodPressureSystolic', 'BloodPressureDiastolic' \
-      , 'BodyTemperature' then
+    when 'BloodPressureSystolic', 'BloodPressureDiastolic'
+    when 'BodyMass', 'BodyTemperature' then
       self[key] = self[key] ? self[key] << row : [row]
     when 'StepCount', 'FlightsClimbed' then # sum of integer
       self[key] = if self[key] then
