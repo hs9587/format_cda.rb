@@ -11,7 +11,7 @@ Oga::XML::Parser.new(ARGF.read) \
   .parse \
   .xpath('//Record') \
   .map do |record|
-    %w[value unit startDate endDate type] \
+    %w[value unit startDate endDate creationDate type sourceName sourceVersion]\
     .map do |key|
       record[key].sub('HKQuantityTypeIdentifier','')
     end \
