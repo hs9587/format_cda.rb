@@ -228,7 +228,7 @@ REXML::Document.new(ARGF.read) \
   .map do |record|
     #record.attributes.inspect
     #record.attribute('type').value
-    %w[value unit startDate endDate type] \
+    %w[value unit startDate endDate creationDate type sourceName sourceVersion]\
     .map do |name|
       record.attribute(name).value.sub('HKQuantityTypeIdentifier','')
     end \
@@ -256,7 +256,7 @@ Oga::XML::Parser.new(ARGF.read) \
   .parse \
   .xpath('//Record') \
   .map do |record|
-    %w[value unit startDate endDate type] \
+    %w[value unit startDate endDate creationDate type sourceName sourceVersion]\
     .map do |key|
       record[key].sub('HKQuantityTypeIdentifier','')
     end \
