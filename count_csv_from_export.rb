@@ -27,7 +27,7 @@ end # class DailyCounts < Hash
 # type_dates.+(%w[value unit]) 
 #              %w[type value unit]
 CSV::Converters[:time13] = ->(cell, info) \
-  { ([1,3].include? info.index) ? Time.parse(cell) : cell }
+  { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
 csv = CSV.parse ARGF.read, converters: :time13
 csv.size.to_s.+("\n").display
@@ -35,5 +35,6 @@ csv.size.to_s.+("\n").display
 dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
-(dcs.keys.min..dcs.keys.max).each{ |day| "#{day}: #{dcs[day]}\n".display }
-
+(dcs.keys.min..dcs.keys.max).map do |day|
+  "#{day}:\n #{dcs[day].map{|k,a| "  #{k}:\n#{a.map{|v|v.values_at(1,*(6..11).to_a).compact.inspect}.join("\n")}\n"}.join}\n\n"
+end.join.display
