@@ -2,19 +2,13 @@ require 'csv'
 require 'time'
 
 class Counts < Hash
-  def add(row)
-    case key = row[0]
-    when /BloodPressureSystolic/, /BloodPressureDiastolic/
-    else
-      self[key] = self[key] ? self[key] << row : [row]
-    end # case key = row[0]
-  end # def add(row)
+
+  # when /BloodPressureSystolic/, /BloodPressureDiastolic/
   def initialize
     super() do |hash, key|
       hash[key] = []
     end # super() do |hash, key|
   end # def initialize
-  # when /BloodPressureSystolic/, /BloodPressureDiastolic/
 end # class Counts < Hash
 
 class DailyCounts < Hash
@@ -25,18 +19,17 @@ class DailyCounts < Hash
   end # def initialize
 
   def add(row)
-    #self[Date.parse row[1].to_s].add row
-    self[Date.parse row[1].to_s][row[0]] << row
+    self[Date.parse row['startDate'].to_s][row['type']] << row
   end # def add(row)
 end # class DailyCounts < Hash
 
-# type_dates = %w[type startDate endDate creationDate sourceName sourceVersion]
+ type_dates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # type_dates.+(%w[value unit]) 
 #              %w[type value unit]
 CSV::Converters[:time13] = ->(cell, info) \
   { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
-csv = CSV.parse ARGF.read, converters: :time13
+csv = CSV.parse ARGF.read, converters: :time13, headers: type_dates
 csv.size.to_s.+("\n").display
 
 dcs = DailyCounts.new
