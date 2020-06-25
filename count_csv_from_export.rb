@@ -9,6 +9,12 @@ class Counts < Hash
       self[key] = self[key] ? self[key] << row : [row]
     end # case key = row[0]
   end # def add(row)
+  def initialize
+    super() do |hash, key|
+      hash[key] = []
+    end # super() do |hash, key|
+  end # def initialize
+  # when /BloodPressureSystolic/, /BloodPressureDiastolic/
 end # class Counts < Hash
 
 class DailyCounts < Hash
@@ -19,7 +25,8 @@ class DailyCounts < Hash
   end # def initialize
 
   def add(row)
-    self[Date.parse row[1].to_s].add row
+    #self[Date.parse row[1].to_s].add row
+    self[Date.parse row[1].to_s][row[0]] << row
   end # def add(row)
 end # class DailyCounts < Hash
 
