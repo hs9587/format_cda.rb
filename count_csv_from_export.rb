@@ -13,9 +13,8 @@ class Counts < Hash
 
       def arr.report
         self.map do |v|
-          "#{v.values_at(1,*(6..11).to_a).compact.inspect}\n"
-        end \
-        .join
+          "#{v.values_at(1,*(6..11).to_a).compact.inspect}"
+        end
       end # def arr.report
 
       hash[key] = arr
@@ -25,7 +24,10 @@ class Counts < Hash
   def report
     map do |k,a|
       next if /BloodPressure(Systolic|Diastolic)/ =~ k
-      "  #{k}:\n#{a.report}"
+      <<-EOReport
+  #{k}:
+#{a.report.join("\n")}
+      EOReport
     end \
       .join 
   end # def report
