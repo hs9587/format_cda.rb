@@ -1,21 +1,31 @@
 require 'csv'
 require 'time'
 
+TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
+# TypeDates.+(%w[value unit]) 
+#              %w[type value unit]
+
 class Counts < Hash
 
   def initialize
     super() do |hash, key|
       arr = []
-      case key
-      when /StepCount/, /DistanceWalkingRunning/ then
-      else# case key
-      end # case key
 
       def arr.report
         self.map do |v|
           "#{v.values_at(1,*(6..11).to_a).compact.inspect}"
         end
       end # def arr.report
+
+      case key
+      when /StepCount/ then
+      when /DistanceWalkingRunning/ then
+        def arr.report
+          sum = self.inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
+          #  "#{v.values_at(1,*(6..11).to_a).compact.inspect}"
+          [[self.first['startDate'], sum, self.first[TypeDates.size+1]].inspect]
+        end # def arr.report
+      end # case key
 
       hash[key] = arr
     end # super() do |hash, key|
@@ -45,13 +55,10 @@ class DailyCounts < Hash
   end # def add(row)
 end # class DailyCounts < Hash
 
- type_dates = %w[type startDate endDate creationDate sourceName sourceVersion]
-# type_dates.+(%w[value unit]) 
-#              %w[type value unit]
 CSV::Converters[:time13] = ->(cell, info) \
   { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
-csv = CSV.parse ARGF.read, converters: :time13, headers: type_dates
+csv = CSV.parse ARGF.read, converters: :time13, headers: TypeDates
 csv.size.to_s.+("\n").display
 
 dcs = DailyCounts.new
