@@ -9,6 +9,19 @@ class Counts < Hash
       hash[key] = []
     end # super() do |hash, key|
   end # def initialize
+
+  def report
+    (
+    map do |k,a|
+  "  #{k}:\n" \
+      + (
+        a.map do |v|
+  "#{v.values_at(1,*(6..11).to_a).compact.inspect}\n"
+        end # a.map do |v|
+      ).join
+    end # dcs[day].map do |k,a|
+    ).join 
+  end # def report
 end # class Counts < Hash
 
 class DailyCounts < Hash
@@ -37,15 +50,6 @@ csv.each{ |row| dcs.add row }
 
 (dcs.keys.min..dcs.keys.max).map do |day|
   "#{day}:\n" \
-  + (  
-    dcs[day].map do |k,a|
-  "  #{k}:\n" \
-      + (
-        a.map do |v| 
-  "#{v.values_at(1,*(6..11).to_a).compact.inspect}\n"
-        end # a.map do |v| 
-      ).join
-    end # dcs[day].map do |k,a|
-  ).join \
+  + dcs[day].report \
   + "\n"
 end.join.display
