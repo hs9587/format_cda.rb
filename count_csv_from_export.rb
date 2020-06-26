@@ -3,24 +3,31 @@ require 'time'
 
 class Counts < Hash
 
-  # when /BloodPressureSystolic/, /BloodPressureDiastolic/
   def initialize
     super() do |hash, key|
-      hash[key] = []
+      arr = []
+      case key
+      when /StepCount/, /DistanceWalkingRunning/ then
+      else# case key
+      end # case key
+
+      def arr.report
+        self.map do |v|
+          "#{v.values_at(1,*(6..11).to_a).compact.inspect}\n"
+        end \
+        .join
+      end # def arr.report
+
+      hash[key] = arr
     end # super() do |hash, key|
   end # def initialize
 
   def report
-    (
     map do |k,a|
-  "  #{k}:\n" \
-      + (
-        a.map do |v|
-  "#{v.values_at(1,*(6..11).to_a).compact.inspect}\n"
-        end # a.map do |v|
-      ).join
-    end # dcs[day].map do |k,a|
-    ).join 
+      next if /BloodPressure(Systolic|Diastolic)/ =~ k
+      "  #{k}:\n#{a.report}"
+    end \
+      .join 
   end # def report
 end # class Counts < Hash
 
