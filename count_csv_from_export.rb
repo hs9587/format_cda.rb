@@ -18,12 +18,15 @@ class Counts < Hash
       end # def arr.report
 
       case key
-      when /StepCount/ then
+      when /StepCount/,/FlightsClimbed/ then
+        def arr.report
+          sum = inject( 0 ){|s, record| s + record[TypeDates.size+0].to_i }
+          [[first['startDate'].strftime('%F 00:00:00 +0900'), sum, first[TypeDates.size+1]].inspect]
+        end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
-          sum = self.inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
-          #  "#{v.values_at(1,*(6..11).to_a).compact.inspect}"
-          [[self.first['startDate'], sum, self.first[TypeDates.size+1]].inspect]
+          sum = inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
+          [[first['startDate'].strftime('%F 00:00:00 +0900'), sum, first[TypeDates.size+1]].inspect]
         end # def arr.report
       end # case key
 
