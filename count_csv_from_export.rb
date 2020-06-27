@@ -38,7 +38,7 @@ class Counts < Hash
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
       <<-EOReport
-#{key}:
+#{key.sub /HK.*Identifier/, ''}:
 #{arr.report.join("\n")}
       EOReport
     end \
@@ -68,7 +68,7 @@ dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
 (dcs.keys.min..dcs.keys.max).map do |day|
-  "#{day}:\n" \
+  "  #{day}:\n" \
   + dcs[day].report \
   + "\n"
 end.join.display
