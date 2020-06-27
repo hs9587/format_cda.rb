@@ -13,7 +13,8 @@ class Counts < Hash
 
       def arr.report
         self.map do |v|
-          "#{v.values_at(1,*(6..11).to_a).compact.inspect}"
+          #"#{v.values_at(1,*(6..11).to_a).compact.inspect}"
+          "#{v['startDate'].strftime '%H:%M'} #{v.values_at( 6..-1 ).inspect}"
         end
       end # def arr.report
 
@@ -21,12 +22,12 @@ class Counts < Hash
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
           sum = inject( 0 ){|s, record| s + record[TypeDates.size+0].to_i }
-          [[first['startDate'].strftime('%F 00:00:00 +0900'), sum, first[TypeDates.size+1]].inspect]
+          [[Time.parse(first['startDate'].to_s[0..9]), sum, first[TypeDates.size+1]].inspect]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
           sum = inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
-          [[first['startDate'].strftime('%F 00:00:00 +0900'), sum, first[TypeDates.size+1]].inspect]
+          [[Time.parse(first['startDate'].to_s[0..9]), sum, first[TypeDates.size+1]].inspect]
         end # def arr.report
       end # case key
 
