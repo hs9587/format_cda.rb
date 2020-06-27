@@ -35,11 +35,11 @@ class Counts < Hash
   end # def initialize
 
   def report
-    map do |k,a|
-      next if /BloodPressure(Systolic|Diastolic)/ =~ k
+    map do |key, arr|
+      next if /BloodPressure(Systolic|Diastolic)/ =~ key
       <<-EOReport
-  #{k}:
-#{a.report.join("\n")}
+#{key}:
+#{arr.report.join("\n")}
       EOReport
     end \
       .join 
