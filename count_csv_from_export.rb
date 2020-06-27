@@ -14,7 +14,7 @@ class Counts < Hash
       def arr.report
         self.map do |v|
           #"#{v.values_at(1,*(6..11).to_a).compact.inspect}"
-          "#{v['startDate'].strftime '%H:%M'} #{v.values_at( 6..-1 ).inspect}"
+          "#{v['startDate'].strftime '%H:%M'} #{v.values_at(6..-1).join(' ')}"
         end
       end # def arr.report
 
