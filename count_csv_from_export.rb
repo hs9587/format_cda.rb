@@ -1,5 +1,6 @@
 require 'csv'
 require 'time'
+require 'erb'
 
 TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # TypeDates.+(%w[value unit]) 
@@ -34,7 +35,6 @@ class Counts < Hash
     end # super() do |hash, key|
   end # def initialize
 
-require 'erb'
   def report
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
