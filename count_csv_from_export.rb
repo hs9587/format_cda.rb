@@ -34,12 +34,19 @@ class Counts < Hash
     end # super() do |hash, key|
   end # def initialize
 
+require 'erb'
   def report
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
-      <<-EOReport
-#{key.sub /HK.*Identifier/, ''}:
-#{arr.report.join("\n")}
+#      <<-EOReport
+##{key.sub /HK.*Identifier/, ''}:
+##{arr.report.join("\n")}
+#      EOReport
+      ERB.new(<<-EOReport, nil, '-').result binding
+<%= key.sub /HK.*Identifier/, '' %>:
+<%- arr.report.each do |line| -%>
+  <%= line %>
+<%- end -%>
       EOReport
     end \
       .join 
