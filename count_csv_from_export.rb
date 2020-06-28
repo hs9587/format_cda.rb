@@ -38,15 +38,11 @@ require 'erb'
   def report
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
-#      <<-EOReport
-##{key.sub /HK.*Identifier/, ''}:
-##{arr.report.join("\n")}
-#      EOReport
       ERB.new(<<-EOReport, nil, '-').result binding
-<%= key.sub /HK.*Identifier/, '' %>:
-<%- arr.report.each do |line| -%>
-  <%= line %>
-<%- end -%>
+  <%= key.sub /HK.*Identifier/, '' %>:
+  <%- arr.report.each do |line| -%>
+    <%= line %>
+  <%- end -%>
       EOReport
     end \
       .join 
@@ -75,7 +71,7 @@ dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
 (dcs.keys.min..dcs.keys.max).map do |day|
-  "  #{day}:\n" \
+  "#{day}:\n" \
   + dcs[day].report \
   + "\n"
 end.join.display
