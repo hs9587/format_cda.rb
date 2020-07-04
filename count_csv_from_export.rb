@@ -2,6 +2,11 @@ require 'csv'
 require 'time'
 require 'erb'
 
+def erb_result(str, b)
+  ERB.new(str, nil, '-').result b
+  # str, safe_level=nil, trim_mode='-'
+end # def erb_result(str, b)
+
 TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # TypeDates.+(%w[value unit]) 
 #              %w[type value unit]
@@ -72,6 +77,10 @@ csv.each{ |row| dcs.add row }
 
 (dcs.keys.min..dcs.keys.max).map do |day|
   ERB.new(<<-EOReport, nil, '-').result binding
+<%= day %>:
+<%= dcs[day].report %>
+  EOReport
+  erb_result <<-EOReport, binding
 <%= day %>:
 <%= dcs[day].report %>
   EOReport
