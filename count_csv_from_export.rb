@@ -9,7 +9,7 @@ end # def erb_result(str, b)
 
 TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # TypeDates.+(%w[value unit]) 
-#              %w[type value unit]
+# Correlation %w[type value unit]
 
 class Counts < Hash
 
