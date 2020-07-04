@@ -43,7 +43,7 @@ class Counts < Hash
   def report
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
-      ERB.new(<<-EOReport, nil, '-').result binding
+      erb_result <<-EOReport, binding
   <%= key.sub /HK.*Identifier/, '' %>:
   <%- arr.report.each do |line| -%>
     <%= line %>
