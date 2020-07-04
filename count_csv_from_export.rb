@@ -71,11 +71,6 @@ dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
 (dcs.keys.min..dcs.keys.max).map do |day|
-=begin
-  "#{day}:\n" \
-  + dcs[day].report \
-  + "\n"
-=end
   ERB.new(<<-EOReport, nil, '-').result binding
 <%= day %>:
 <%= dcs[day].report %>
