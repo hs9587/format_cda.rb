@@ -75,9 +75,16 @@ csv.size.to_s.+("\n").display
 dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
-(dcs.keys.min..dcs.keys.max).map do |day|
-  erb_result <<-EOReport, binding
+#(dcs.keys.min..dcs.keys.max).map do |day|
+#  erb_result <<-EOReport, binding
+#<%= day %>:
+#<%= dcs[day].report %>
+#  EOReport
+#end.join.display
+
+erb_result(<<-EOReport, binding).display
+<%- (dcs.keys.min..dcs.keys.max).map do |day| -%>
 <%= day %>:
 <%= dcs[day].report %>
-  EOReport
-end.join.display
+<%- end -%>
+EOReport
