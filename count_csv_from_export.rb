@@ -10,6 +10,7 @@ end # def erb_result(str, b)
 TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # TypeDates.+(%w[value unit]) 
 # Correlation %w[type value unit]
+ValueI, UnitI, CorI = TypeDates.size, TypeDates.size+1, TypeDates.size
 
 class Counts < Hash
 
@@ -19,27 +20,27 @@ class Counts < Hash
 
       def arr.report
         self.map do |v|
-          "#{v['startDate'].strftime '%H:%M'} #{v.values_at(6..-1).join(' ')}"
+          "#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
         end
       end # def arr.report
 
       case key
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
-          sum = inject( 0 ){|s, record| s + record[TypeDates.size+0].to_i }
-          ["      %6d %s" % [sum, first[TypeDates.size+1]]]
+          sum = inject( 0 ){|s, record| s + record[ValueI].to_i }
+          ["      %6d %s" % [sum, first[UnitI]]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
-          sum = inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
-          ["      %6f %s" % [sum, first[TypeDates.size+1]]]
+          sum = inject(0.0){|s, record| s + record[ValueI].to_f }
+          ["      %6f %s" % [sum, first[UnitI]]]
         end # def arr.report
       when /Correlation/ then
         def arr.report
           map do |record|
             "#{record['startDate'].strftime '%H:%M'} " \
-            + record.values_at(TypeDates.size..-1).each_slice(3) \
-              .to_a.sort.reverse.map{ |item|  item.join(' ') }.join(' / ')
+            + record.values_at(CorI..-1).each_slice(3).to_a.sort.reverse \
+              .map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
       when /Correlation/ then
