@@ -38,8 +38,8 @@ class Counts < Hash
         def arr.report
           map do |record|
             "#{record['startDate'].strftime '%H:%M'} " \
-            + record.values_at(TypeDates.size..-1).each_slice(3).to_a.sort.reverse.map{ |item|  item.join(' ') }.join(' / ')
-            #+ "#{record.values_at(6..-1).join(' ')}" \
+            + record.values_at(TypeDates.size..-1).each_slice(3) \
+              .to_a.sort.reverse.map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
       when /Correlation/ then
