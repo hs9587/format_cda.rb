@@ -34,6 +34,15 @@ class Counts < Hash
           sum = inject(0.0){|s, record| s + record[TypeDates.size+0].to_f }
           ["      %6f %s" % [sum, first[TypeDates.size+1]]]
         end # def arr.report
+      when /Correlation/ then
+        def arr.report
+          map do |record|
+            "#{record['startDate'].strftime '%H:%M'} " \
+            + record.values_at(TypeDates.size..-1).each_slice(3).to_a.sort.reverse.map{ |item|  item.join(' ') }.join(' / ')
+            #+ "#{record.values_at(6..-1).join(' ')}" \
+          end # map do |record|
+        end # def arr.report
+      when /Correlation/ then
       end # case key
 
       hash[key] = arr
