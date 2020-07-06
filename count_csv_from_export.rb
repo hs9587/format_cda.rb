@@ -12,11 +12,14 @@ TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # Correlation %w[type value unit]
 ValueI, UnitI, CorI = TypeDates.size, TypeDates.size+1, TypeDates.size
 
+class Count  < Array
+end # class Count  < Array
+
 class Counts < Hash
 
   def initialize
     super() do |hash, key|
-      arr = []
+      arr = Count.new
 
       def arr.report
         self.map do |v|
