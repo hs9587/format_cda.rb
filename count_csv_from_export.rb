@@ -26,11 +26,11 @@ class Counts < Hash
     super() do |hash, key|
       arr = Count.new
 
-      def arr.report
-        self.map do |v|
-          "#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
-        end
-      end # def arr.report
+#      def arr.report
+#        self.map do |v|
+#          "#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
+#        end
+#      end # def arr.report
 
       case key
       when /StepCount/,/FlightsClimbed/ then
