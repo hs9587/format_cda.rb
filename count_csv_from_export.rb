@@ -13,6 +13,11 @@ TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 ValueI, UnitI, CorI = TypeDates.size, TypeDates.size+1, TypeDates.size
 
 class Count  < Array
+  def report
+    map do |v|
+      "#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
+    end # map do |v|
+  end # def report
 end # class Count  < Array
 
 class Counts < Hash
