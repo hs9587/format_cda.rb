@@ -12,10 +12,19 @@ TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
 # Correlation %w[type value unit]
 ValueI, UnitI, CorI = TypeDates.size, TypeDates.size+1, TypeDates.size
 
+module Qwe
+  TypeDates.each{ |key| define_method(key){ self[key] }}
+end # module Qwe
+
 class Count  < Array
+  def <<(row)
+    super row.extend(Qwe)
+  end # def <<(row)
+
   def report
     map do |v|
-      "#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
+      #"#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
+      "#{v.startDate.strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
     end # map do |v|
   end # def report
 end # class Count  < Array
