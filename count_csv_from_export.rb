@@ -7,24 +7,25 @@ def erb_result(str, b)
   # str, safe_level=nil, trim_mode='-'
 end # def erb_result(str, b)
 
-TypeDates = %w[type startDate endDate creationDate sourceName sourceVersion]
-# TypeDates.+(%w[value unit]) 
-# Correlation %w[type value unit]
-ValueI, UnitI, CorI = TypeDates.size, TypeDates.size+1, TypeDates.size
 
-module Qwe
-  TypeDates.each{ |key| define_method(key){ self[key] }}
-end # module Qwe
+module TypeDates
+  Headers = %w[type startDate endDate creationDate sourceName sourceVersion]
+  # Headers  +  %w[value unit]
+  # Correlation %w[type value unit]
+  ValueI, UnitI, CorI = Headers.size, Headers.size+1, Headers.size
+  
+  Headers.each{ |key| define_method(key){ self[key] }}
+end # module TypeDates
 
 class Count  < Array
   def <<(row)
-    super row.extend(Qwe)
+    super row.extend(TypeDates)
   end # def <<(row)
 
   def report
     map do |v|
       #"#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
-      "#{v.startDate.strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
+      "#{v.startDate.strftime '%H:%M'} #{v.values_at(TypeDates::CorI..-1).join(' ')}"
     end # map do |v|
   end # def report
 end # class Count  < Array
@@ -38,19 +39,19 @@ class Counts < Hash
       case key
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
-          sum = inject( 0 ){|s, record| s + record[ValueI].to_i }
-          ["      %6d %s" % [sum, first[UnitI]]]
+          sum = inject( 0 ){|s, record| s + record[TypeDates::ValueI].to_i }
+          ["      %6d %s" % [sum, first[TypeDates::UnitI]]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
-          sum = inject(0.0){|s, record| s + record[ValueI].to_f }
-          ["      %6f %s" % [sum, first[UnitI]]]
+          sum = inject(0.0){|s, record| s + record[TypeDates::ValueI].to_f }
+          ["      %6f %s" % [sum, first[TypeDates::UnitI]]]
         end # def arr.report
       when /Correlation/ then
         def arr.report
           map do |record|
             "#{record['startDate'].strftime '%H:%M'} " \
-            + record.values_at(CorI..-1).each_slice(3).to_a.sort.reverse \
+            + record.values_at(TypeDates::CorI..-1).each_slice(3).to_a.sort.reverse \
               .map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
@@ -90,7 +91,7 @@ end # class DailyCounts < Hash
 CSV::Converters[:time13] = ->(cell, info) \
   { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
-csv = CSV.parse ARGF.read, converters: :time13, headers: TypeDates
+csv = CSV.parse ARGF.read, converters: :time13, headers: TypeDates::Headers
 csv.size.to_s.+("\n").display
 
 dcs = DailyCounts.new
