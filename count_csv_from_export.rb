@@ -26,7 +26,14 @@ module TypeDates
   end # def values
 
   def rels
-    values.each_slice(3).to_a.sort.reverse if /Correlation/ =~ type
+    #values.each_slice(3).to_a.sort.reverse if /Correlation/ =~ type
+    values.each_slice(3) \
+      .map{ |rel| rel.extend Module.new{ 
+      def type;  self[0]; end
+      def value; self[1]; end
+      def unit;  self[2]; end
+      } } \
+      .sort.reverse if /Correlation/ =~ type
   end # def rels
 end # module TypeDates
 
@@ -63,7 +70,10 @@ class Counts < Hash
         def arr.report
           map do |record|
             "#{record['startDate'].strftime '%H:%M'} " \
-            + record.rels.map{ |item|  item.join(' ') }.join(' / ')
+              + record.rels.map{ |rel|
+                "#{rel.type} #{rel.value} #{rel.unit}"
+              }.join(' / ')
+            #+ record.rels.map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
       when /Correlation/ then
