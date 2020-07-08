@@ -12,7 +12,6 @@ module TypeDates
   Headers = %w[type startDate endDate creationDate sourceName sourceVersion]
   # Headers  +  %w[value unit]
   # Correlation %w[type value unit]
-  #ValueI, UnitI, CorI = Headers.size, Headers.size+1, Headers.size
   
   Headers.each{ |key| define_method(key){ self[key] }}
   def value
