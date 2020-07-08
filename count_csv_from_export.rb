@@ -12,6 +12,7 @@ module TypeDates
   Headers = %w[type startDate endDate creationDate sourceName sourceVersion]
   # Headers  +  %w[value unit]
   # Correlation %w[type value unit]
+  Rel = {type: 0,  value: 1,  unit: 2}
   
   Headers.each{ |key| define_method(key){ self[key] }}
   def value
@@ -29,9 +30,10 @@ module TypeDates
     #values.each_slice(3).to_a.sort.reverse if /Correlation/ =~ type
     values.each_slice(3) \
       .map{ |rel| rel.extend Module.new{ 
-      def type;  self[0]; end
-      def value; self[1]; end
-      def unit;  self[2]; end
+        Rel.each{ |k, i| define_method(k){ self[i] } }
+      #def type;  self[0]; end
+      #def value; self[1]; end
+      #def unit;  self[2]; end
       } } \
       .sort.reverse if /Correlation/ =~ type
   end # def rels
