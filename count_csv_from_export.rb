@@ -15,6 +15,20 @@ module TypeDates
   ValueI, UnitI, CorI = Headers.size, Headers.size+1, Headers.size
   
   Headers.each{ |key| define_method(key){ self[key] }}
+  def value
+    self[ValueI]
+  end # def value
+  def unit
+    self[UnitI]
+  end # def unit
+
+  def values
+    values_at CorI..-1
+  end # def values
+
+  def rels
+    values.each_slice(3).to_a.sort.reverse
+  end # def rels
 end # module TypeDates
 
 class Count  < Array
@@ -25,7 +39,8 @@ class Count  < Array
   def report
     map do |v|
       #"#{v['startDate'].strftime '%H:%M'} #{v.values_at(CorI..-1).join(' ')}"
-      "#{v.startDate.strftime '%H:%M'} #{v.values_at(TypeDates::CorI..-1).join(' ')}"
+      #"#{v.startDate.strftime '%H:%M'} #{v.values_at(TypeDates::CorI..-1).join(' ')}"
+      "#{v.startDate.strftime '%H:%M'} #{v.values.join(' ')}"
     end # map do |v|
   end # def report
 end # class Count  < Array
@@ -39,20 +54,25 @@ class Counts < Hash
       case key
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
-          sum = inject( 0 ){|s, record| s + record[TypeDates::ValueI].to_i }
-          ["      %6d %s" % [sum, first[TypeDates::UnitI]]]
+          #sum = inject( 0 ){|s, record| s + record[TypeDates::ValueI].to_i }
+          #["      %6d %s" % [sum, first[TypeDates::UnitI]]]
+          sum = inject( 0 ){|s, record| s + record.value.to_i }
+          ["      %6d %s" % [sum, first.unit]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
-          sum = inject(0.0){|s, record| s + record[TypeDates::ValueI].to_f }
-          ["      %6f %s" % [sum, first[TypeDates::UnitI]]]
+          #sum = inject(0.0){|s, record| s + record[TypeDates::ValueI].to_f }
+          #["      %6f %s" % [sum, first[TypeDates::UnitI]]]
+          sum = inject(0.0){|s, record| s + record.value.to_f }
+          ["      %6f %s" % [sum, first.unit]]
         end # def arr.report
       when /Correlation/ then
         def arr.report
           map do |record|
             "#{record['startDate'].strftime '%H:%M'} " \
-            + record.values_at(TypeDates::CorI..-1).each_slice(3).to_a.sort.reverse \
-              .map{ |item|  item.join(' ') }.join(' / ')
+            + record.rels.map{ |item|  item.join(' ') }.join(' / ')
+            #+ record.values_at(TypeDates::CorI..-1).each_slice(3).to_a.sort.reverse \
+            #  .map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
       when /Correlation/ then
