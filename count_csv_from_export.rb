@@ -16,18 +16,18 @@ module TypeDates
   
   Headers.each{ |key| define_method(key){ self[key] }}
   def value
-    self[ValueI]
+    self[Headers.size+0] unless /Correlation/ =~ type
   end # def value
   def unit
-    self[UnitI]
+    self[Headers.size+1] unless /Correlation/ =~ type
   end # def unit
 
   def values
-    values_at CorI..-1
+    values_at (Headers.size+0)..-1
   end # def values
 
   def rels
-    values.each_slice(3).to_a.sort.reverse
+    values.each_slice(3).to_a.sort.reverse if /Correlation/ =~ type
   end # def rels
 end # module TypeDates
 
