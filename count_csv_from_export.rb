@@ -13,12 +13,12 @@ module TypeDates
   # Headers  +  %w[value unit]
   Rel = %w[type value unit] # Correlation
   
-  Headers.each{ |key| define_method(key){ self[key] }}
+  Headers.each{ |key| define_method(key){ field key }}
   def value
-    self[Headers.size+0] unless /Correlation/ =~ type
+    field Headers.size+0 unless /Correlation/ =~ type
   end # def value
   def unit
-    self[Headers.size+1] unless /Correlation/ =~ type
+    field Headers.size+1 unless /Correlation/ =~ type
   end # def unit
 
   def values
