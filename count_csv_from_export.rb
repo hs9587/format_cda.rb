@@ -26,15 +26,15 @@ module TypeDates
   end # def values
 
   def rels
-    #values.each_slice(3).to_a.sort.reverse if /Correlation/ =~ type
-    values.each_slice(3) \
-      .map{ |rel| rel.extend Module.new{ 
-        Rel.each_with_index{ |key, i| define_method(key){ self[i] } }
-      #def type;  self[0]; end
-      #def value; self[1]; end
-      #def unit;  self[2]; end
-      } } \
-      .sort.reverse if /Correlation/ =~ type
+    if /Correlation/ =~ type then
+      values.each_slice(3) \
+      .map do |rel|
+        rel.extend \
+          Module.new{ Rel.each_with_index{ |k, i| define_method(k){ slice i }}} 
+      end \
+      .sort.reverse
+      # type ‚Ì•¶š—ñ‡Areverse ‚ÅŒŒˆ³‚ªûkŠú(Systolic)Šg’£Šú(Diastolic)‚Ì‡‚É
+    end # if /Correlation/ =~ type
   end # def rels
 end # module TypeDates
 
