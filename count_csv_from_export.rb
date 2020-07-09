@@ -39,10 +39,6 @@ module TypeDates
 end # module TypeDates
 
 class Count  < Array
-  #def <<(row)
-  #  super row.extend(TypeDates)
-  #end # def <<(row)
-
   def report
     map do |v|
       "#{v.startDate.strftime '%H:%M'} #{v.values.join(' ')}"
@@ -105,7 +101,6 @@ class DailyCounts < Hash
   end # def initialize
 
   def add(row)
-    #self[Date.parse row['startDate'].to_s][row['type']] << row
     row.extend TypeDates
     self[Date.parse row.startDate.to_s][row.type] << row
   end # def add(row)
