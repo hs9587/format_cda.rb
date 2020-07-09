@@ -70,11 +70,10 @@ class Counts < Hash
       when /Correlation/ then
         def arr.report
           map do |record|
-            "#{record['startDate'].strftime '%H:%M'} " \
+            "#{record.startDate.strftime '%H:%M'} " \
               + record.rels.map{ |rel|
                 "#{rel.type} #{rel.value} #{rel.unit}"
               }.join(' / ')
-            #+ record.rels.map{ |item|  item.join(' ') }.join(' / ')
           end # map do |record|
         end # def arr.report
       when /Correlation/ then
