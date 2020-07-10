@@ -40,9 +40,9 @@ end # module TypeDates
 
 class Count  < Array
   def report
-    map do |v|
-      "#{v.startDate.strftime '%H:%M'} #{v.values.join(' ')}"
-    end # map do |v|
+    map do |row|
+      "#{row.startDate.strftime '%H:%M'} #{row.values.join(' ')}"
+    end # map do |row|
   end # def report
 end # class Count  < Array
 
@@ -55,22 +55,22 @@ class Counts < Hash
       case key
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
-          sum = inject( 0 ){|s, record| s + record.value.to_i }
+          sum = inject( 0 ){|s, row| s + row.value.to_i }
           ["      %6d %s" % [sum, first.unit]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
-          sum = inject(0.0){|s, record| s + record.value.to_f }
+          sum = inject(0.0){|s, row| s + row.value.to_f }
           ["      %6f %s" % [sum, first.unit]]
         end # def arr.report
       when /Correlation/ then
         def arr.report
-          map do |record|
-            "#{record.startDate.strftime '%H:%M'} " \
-              + record.rels.map{ |rel|
+          map do |row|
+            "#{row.startDate.strftime '%H:%M'} " \
+              + row.rels.map{ |rel|
                 "#{rel.type} #{rel.value} #{rel.unit}"
               }.join(' / ')
-          end # map do |record|
+          end # map do |row|
         end # def arr.report
       when /Correlation/ then
       end # case key
