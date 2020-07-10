@@ -126,11 +126,3 @@ csv.each{ |row| dcs.add row }
 
 dcs.report.display
 
-=begin
-(dcs.keys.min..dcs.keys.max).map do |day|
-  erb_result <<-EOReport, binding
-<%= day %>:
-<%= dcs[day].report %>
-  EOReport
-end.join.display
-=end
