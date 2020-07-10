@@ -104,6 +104,15 @@ class DailyCounts < Hash
     row.extend TypeDates
     self[Date.parse row.startDate.to_s][row.type] << row
   end # def add(row)
+
+  def report
+    (keys.min..keys.max).map do |day|
+      erb_result <<-EOReport, binding
+<%= day %>:
+<%= self[day].report %>
+      EOReport
+    end.join
+  end # def report
 end # class DailyCounts < Hash
 
 CSV::Converters[:time13] = ->(cell, info) \
@@ -115,9 +124,13 @@ csv.size.to_s.+("\n").display
 dcs = DailyCounts.new
 csv.each{ |row| dcs.add row }
 
+dcs.report.display
+
+=begin
 (dcs.keys.min..dcs.keys.max).map do |day|
   erb_result <<-EOReport, binding
 <%= day %>:
 <%= dcs[day].report %>
   EOReport
 end.join.display
+=end
