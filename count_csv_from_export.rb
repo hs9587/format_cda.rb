@@ -119,7 +119,9 @@ end # class DailyCounts < Hash
 CSV::Converters[:time13] = ->(cell, info) \
   { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
-CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
-  .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
-  .report.display
+if $PROGRAM_NAME == __FILE__ then
+  CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
+    .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
+    .report.display
+end # if $PROGRAM_NAME == __FILE__
 
