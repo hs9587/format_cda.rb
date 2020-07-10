@@ -123,12 +123,3 @@ CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
   .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
   .report.display
 
-=begin
-csv = CSV.parse ARGF.read, converters: :time13, headers: TypeDates::Headers
-csv.size.to_s.+("\n").display
-
-dcs = DailyCounts.new
-csv.each{ |row| dcs.add row }
-
-dcs.report.display
-=end
