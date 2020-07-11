@@ -39,11 +39,6 @@ module TypeDates
 end # module TypeDates
 
 class Count  < Array
-  def report
-    map do |row|
-      "#{row.startDate.strftime '%H:%M'} #{row.values.join(' ')}"
-    end # map do |row|
-  end # def report
 end # class Count  < Array
 
 class Counts < Hash
@@ -72,7 +67,12 @@ class Counts < Hash
               }.join(' / ')
           end # map do |row|
         end # def arr.report
-      when /Correlation/ then
+      else
+        def arr.report
+          map do |row|
+            "#{row.startDate.strftime '%H:%M'} #{row.values.join(' ')}"
+          end # map do |row|
+        end # def arr.report
       end # case key
 
       hash[key] = arr
