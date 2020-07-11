@@ -94,12 +94,14 @@ class Counts < Hash
   def report
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
+      keyword = key.sub /HK.*Identifier/, ''
       erb_result <<-EOReport, binding
-  <%= key.sub /HK.*Identifier/, '' %>:
+  <%= keyword %>:
   <%- arr.report.each do |line| -%>
-    <%= line %>
+    <%= line.gsub keyword, '' %>
   <%- end -%>
       EOReport
+      # gsub keyword ‚Å BloodPressure ‚Ì•\¦‚ğ‚¿‚å‚Á‚Æ—}§
     end \
       .join 
   end # def report
