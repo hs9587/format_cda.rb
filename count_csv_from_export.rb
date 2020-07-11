@@ -38,14 +38,11 @@ module TypeDates
   end # def rels
 end # module TypeDates
 
-class Count  < Array
-end # class Count  < Array
-
 class Counts < Hash
 
   def initialize
     super() do |hash, key|
-      arr = Count.new
+      arr = []
 
       case key
       when /Correlation/ then
