@@ -62,7 +62,7 @@ class Counts < Hash
       when /DistanceWalkingRunning/ then
         def arr.report
           sum = inject(0.0){|s, row| s + row.value.to_f }
-          ["      %f %s" % [sum, first.unit]]
+          ["      %.3f %s" % [sum, first.unit]]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
