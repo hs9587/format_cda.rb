@@ -67,6 +67,13 @@ class Counts < Hash
           sum = inject(0.0){|s, row| s + row.value.to_f }
           ["      %f %s" % [sum, first.unit]]
         end # def arr.report
+      when /BodyMass/,/BodyTemperature/ then
+        def arr.report
+          map do |row|
+            "#{row.startDate.strftime '%H:%M'} " \
+              + '%4.1f %s' % [row.value, row.unit]
+          end # map do |row|
+        end # def arr.report
       else
         def arr.report
           map do |row|
