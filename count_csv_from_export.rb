@@ -75,8 +75,8 @@ class Counts < Hash
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + '%s %s' % [row.value, row.unit] \
-              + ' %6.1f sec' % (row.endDate-row.startDate)
+              + '%4.1f %s' % [row.value, row.unit] \
+              + ' (%4.1f min)' % ((row.endDate-row.startDate)/60)
           end # map do |row|
         end # def arr.report
       else
