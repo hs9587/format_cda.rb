@@ -48,16 +48,6 @@ class Counts < Hash
       arr = Count.new
 
       case key
-      when /StepCount/,/FlightsClimbed/ then
-        def arr.report
-          sum = inject( 0 ){|s, row| s + row.value.to_i }
-          ["      %6d %s" % [sum, first.unit]]
-        end # def arr.report
-      when /DistanceWalkingRunning/ then
-        def arr.report
-          sum = inject(0.0){|s, row| s + row.value.to_f }
-          ["      %6f %s" % [sum, first.unit]]
-        end # def arr.report
       when /Correlation/ then
         def arr.report
           map do |row|
@@ -66,6 +56,16 @@ class Counts < Hash
                 "#{rel.type} #{rel.value} #{rel.unit}"
               }.join(' / ')
           end # map do |row|
+        end # def arr.report
+      when /StepCount/,/FlightsClimbed/ then
+        def arr.report
+          sum = inject( 0 ){|s, row| s + row.value.to_i }
+          ["      %d %s" % [sum, first.unit]]
+        end # def arr.report
+      when /DistanceWalkingRunning/ then
+        def arr.report
+          sum = inject(0.0){|s, row| s + row.value.to_f }
+          ["      %f %s" % [sum, first.unit]]
         end # def arr.report
       else
         def arr.report
