@@ -131,6 +131,12 @@ class DailyCounts < Hash
 
 require 'i18n'
   I18n.load_path += Dir[File.join(File.dirname(__FILE__), '*.yml')]
+  module TandL
+    private
+      def t(*args); I18n.t *args; end
+      def l(*args); I18n.l *args; end
+    # private
+  end # module TandL
 
   def report_i18n(locale=:ja)
     I18n.locale = locale
@@ -144,10 +150,13 @@ require 'i18n'
     end # if keys.min and keys.max
   end # def repot_i18n(l=:ja)
 
+  include TandL
+=begin
   private
     def t(*args); I18n.t *args; end
     def l(*args); I18n.l *args; end
   # private
+=end
 end # class DailyCounts < Hash
 
 CSV::Converters[:time13] = ->(cell, info) \
