@@ -130,7 +130,7 @@ class DailyCounts < Hash
   end # def report
 
 require 'i18n'
-I18n.load_path << File.join(File.dirname(File.expand_path(__FILE__)), 'ja.yml')
+  I18n.load_path += Dir[File.join(File.dirname(__FILE__), '*.yml')]
 
   def report_i18n(locale=:ja)
     I18n.locale = locale
