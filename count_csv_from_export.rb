@@ -7,6 +7,14 @@ def erb_result(str, b)
   # str, safe_level=nil, trim_mode='-'
 end # def erb_result(str, b)
 
+require 'i18n'
+  I18n.load_path += Dir[File.join(File.dirname(__FILE__), '*.yml')]
+  module TandL
+    private
+      def t(*args); I18n.t *args; end
+      def l(*args); I18n.l *args; end
+    # private
+  end # module TandL
 
 module TypeDates
   Headers = %w[type startDate endDate creationDate sourceName sourceVersion]
@@ -105,6 +113,8 @@ class Counts < Hash
     end \
       .join 
   end # def report
+
+  include TandL
 end # class Counts < Hash
 
 class DailyCounts < Hash
@@ -128,15 +138,6 @@ class DailyCounts < Hash
       EOReport
     end.join
   end # def report
-
-require 'i18n'
-  I18n.load_path += Dir[File.join(File.dirname(__FILE__), '*.yml')]
-  module TandL
-    private
-      def t(*args); I18n.t *args; end
-      def l(*args); I18n.l *args; end
-    # private
-  end # module TandL
 
   def report_i18n(locale=:ja)
     I18n.locale = locale
