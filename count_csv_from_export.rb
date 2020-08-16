@@ -114,8 +114,6 @@ class Counts < Hash
     end \
       .join 
   end # def report
-
-  include TandL
 end # class Counts < Hash
 
 class DailyCounts < Hash
@@ -159,6 +157,14 @@ CSV::Converters[:time13] = ->(cell, info) \
   { ((1..3).include? info.index) ? Time.parse(cell) : cell }
 
 if $PROGRAM_NAME == __FILE__ then
+  require 'optparse'
+  ARGV.options do |opts|
+    opts.banner += ' <path to (oga_)export.csv>'
+    opts.on('-l L', '--locale=L', 'locale default: en') \
+      { |l| I18n.locale = l.to_sym }
+    opts.parse!
+  end # ARGV.options do |opts|
+
   CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
     .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
     .report.display
