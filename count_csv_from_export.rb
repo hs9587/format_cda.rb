@@ -8,11 +8,14 @@ def erb_result(str, b)
 end # def erb_result(str, b)
 
 require 'i18n'
-  I18n.load_path += Dir[File.join(File.dirname(__FILE__), '*.yml')]
+  p File.join(File.dirname(__FILE__), 'locale', '*.yml')
+  p Dir[File.join(File.dirname(__FILE__), 'locale', '*.yml')]
+  I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'locale', '*.yml')]
+  p I18n.load_path 
 module TandL
   private
-    def t(*args); I18n.t *args; end
-    def l(*args); I18n.l *args; end
+    def t(key,    *options); I18n.t key   , *options; end
+    def l(object, *options); I18n.l object, *options; end
   # private
 end # module TandL
 
