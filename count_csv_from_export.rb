@@ -10,9 +10,18 @@ end # def erb_result(str, b)
 require 'i18n'
   I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'locale', '*.yml')]
 module TandL
+  @@effective = false
+
+  def self.effective; @@effective; end
+  def self.effective=(v)
+    @@effective = v
+  end # def self.effective=(v)
+
   private
     def t(key,    *options); I18n.t key   , *options; end
-    def l(object, *options); I18n.l object, *options; end
+    def l(object, *options) 
+      @@effective ? I18n.l(object, *options) : object
+    end
   # private
 end # module TandL
 
