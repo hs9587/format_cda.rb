@@ -18,10 +18,12 @@ module TandL
   end # def self.effective=(v)
 
   private
-    def t(key,    *options); I18n.t key   , *options; end
+    def t(object, *options) 
+      @@effective ? I18n.t(object, *options) : object
+    end # def t(object, *options) 
     def l(object, *options) 
       @@effective ? I18n.l(object, *options) : object
-    end
+    end # def l(object, *options) 
   # private
 end # module TandL
 
@@ -170,7 +172,7 @@ if $PROGRAM_NAME == __FILE__ then
   ARGV.options do |opts|
     opts.banner += ' <path to (oga_)export.csv>'
     opts.on('-l L', '--locale=L', 'locale default: en') \
-      { |l| I18n.locale = l.to_sym }
+      { |l| TandL.effective = true;  I18n.locale = l.to_sym }
     opts.parse!
   end # ARGV.options do |opts|
 
