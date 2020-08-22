@@ -116,7 +116,7 @@ class Counts < Hash
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
       keyword = key.sub /HK.*Identifier/, ''
       erb_result <<-EOReport, binding
-  <%= keyword %>:
+  <%=t keyword %>:
   <%- arr.report.each do |line| -%>
     <%= line.gsub keyword, '' %>
   <%- end -%>
