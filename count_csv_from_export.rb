@@ -145,7 +145,7 @@ class DailyCounts < Hash
   def report
     (keys.min..keys.max).map do |day|
       erb_result <<-EOReport, binding
-<%= day %>:
+<%=l day %>:
 <%= self[day].report %>
       EOReport
     end.join
