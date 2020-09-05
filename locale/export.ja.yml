@@ -1,4 +1,13 @@
 # coding: UTF-8
 ja:
   asdf: 'あｓｄｆ'
-  BodyMass: '体重'
+  BodyMass:        '体重'
+  HeartRate:       '心拍数'
+  BodyTemperature: '体温'
+  StepCount:       '歩数'
+  DistanceWalkingRunning: 'ウォーキング+ランニングの距離'
+  FlightsClimbed:  '上った階数'
+  BloodPressure:   '血圧'
+  Systolic:        '最高'
+  Diastolic:       '最低'
+  HeadphoneAudioExposure: 'ヘッドフォン音量'
