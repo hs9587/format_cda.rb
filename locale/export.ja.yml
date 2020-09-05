@@ -7,7 +7,16 @@ ja:
   StepCount:       '歩数'
   DistanceWalkingRunning: 'ウォーキング+ランニングの距離'
   FlightsClimbed:  '上った階数'
+  HeadphoneAudioExposure: 'ヘッドフォン音量'
+
   BloodPressure:   '血圧'
   Systolic:        '最高'
   Diastolic:       '最低'
-  HeadphoneAudioExposure: 'ヘッドフォン音量'
+
+  Height:             '身長'
+  WaistCircumference: '胴囲'
+  DietarySodium:      'ナトリウム'
+  DietaryChloride:    '塩化物'
+  DietaryPotassium:   'カリウム'
+  BloodGlucose:       '血糖値'
+
