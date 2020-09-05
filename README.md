@@ -285,3 +285,10 @@ head ‚Ì‘ã‚í‚è
 ```ruby
 | ruby -pe "exit if $.==8"
 ```
+‚ ‚Æ
+```ruby
+ruby -e "ARGF.readlines.select{|l|/2020-09/=~l}.join.display" oga.export.csv |
+```
+```ruby
+| ruby -rnkf -ne "NKF.nkf('-Ws',$_).display"
+```

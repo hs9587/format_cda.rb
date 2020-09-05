@@ -1,5 +1,2 @@
 en:
-  date:
-    formats:
-      default: '%Y-%m-%d'
   asdf: 'asdf'
