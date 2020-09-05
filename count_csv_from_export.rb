@@ -37,7 +37,7 @@ module TypeDates
     field Headers.size+0 unless /Correlation/ =~ type
   end # def value
   def unit
-    field Headers.size+1 unless /Correlation/ =~ type
+  #  field Headers.size+1 unless /Correlation/ =~ type
   end # def unit
 
   def values
@@ -115,7 +115,8 @@ class Counts < Hash
     map do |key, arr|
       next if /BloodPressure(Systolic|Diastolic)/ =~ key
       keyword = key.sub /HK.*Identifier/, ''
-      erb_result <<-EOReport, binding
+      erb_result(<<-EOReport, binding).force_encoding 'UTF-8'
+  <%# coding: utf-8 -%>
   <%=t keyword %>:
   <%- arr.report.each do |line| -%>
     <%= line.gsub keyword, '' %>
@@ -144,7 +145,8 @@ class DailyCounts < Hash
 
   def report
     (keys.min..keys.max).map do |day|
-      erb_result <<-EOReport, binding
+      erb_result(<<-EOReport, binding).force_encoding 'UTF-8'
+<%# coding: utf-8 -%>
 <%=l day %>:
 <%= self[day].report %>
       EOReport
