@@ -1,6 +1,7 @@
 # coding: UTF-8
 ja:
   asdf: 'あｓｄｆ'
+
   BodyMass:        '体重'
   HeartRate:       '心拍数'
   BodyTemperature: '体温'
@@ -9,9 +10,9 @@ ja:
   FlightsClimbed:  '上った階数'
   HeadphoneAudioExposure: 'ヘッドフォン音量'
 
-  BloodPressure:   '血圧'
-  Systolic:        '最高'
-  Diastolic:       '最低'
+  BloodPressure:          '血圧'
+  BloodPressureSystolic:  '最高'
+  BloodPressureDiastolic: '最低'
 
   Height:             '身長'
   WaistCircumference: '胴囲'

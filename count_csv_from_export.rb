@@ -20,6 +20,7 @@ module TandL
   private
     def t(object, *options) 
       @@effective ? I18n.t(object, *options) : object
+      #@@effective ? I18n.t(object, raise: true) : object
     end # def t(object, *options) 
     def l(object, *options) 
       @@effective ? I18n.l(object, *options) : object
@@ -66,11 +67,12 @@ class Counts < Hash
 
       case key
       when /Correlation/ then
+        arr.extend TandL
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
               + row.rels.map{ |rel|
-                "#{rel.type} #{rel.value} #{rel.unit}"
+                "#{t rel.type} #{rel.value} #{rel.unit}"
               }.join(' / ')
           end # map do |row|
         end # def arr.report
