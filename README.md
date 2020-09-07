@@ -55,7 +55,7 @@ export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか
 - [最近1枚分 latest_cda.rb](#最近1枚分-latest_cdarb)
 - [別のやつ csv_from_export.rb](#別のやつ-csv_from_exportrb)
   - [oga_csv_from_export.rb](#oga_csv_from_exportrb)
-- [別のやつ集計整形 count_csv_from_export.rb](#別のやつ集計整形 count_csv_from_exportrb)
+- [別のやつ集計整形 count_csv_from_export.rb](#別のやつ集計整形 -count_csv_from_exportrb)
 - [おまけ](#おまけ)
 
 # CSV化 csv_from_export_cda.rb
