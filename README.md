@@ -55,6 +55,7 @@ export.xml の方はサイズが大きい量も多く、IPhone で自動収集されるデータ、歩数とか
 - [最近1枚分 latest_cda.rb](#最近1枚分-latest_cdarb)
 - [別のやつ csv_from_export.rb](#別のやつ-csv_from_exportrb)
   - [oga_csv_from_export.rb](#oga_csv_from_exportrb)
+- [別のやつ集計整形 count_csv_from_export.rb](#別のやつ集計整形 count_csv_from_export.rb)
 - [おまけ](#おまけ)
 
 # CSV化 csv_from_export_cda.rb
@@ -278,6 +279,9 @@ Ogaジェムをインストールしてやってみた、Cエクステンションあり、その他ライブラリ不
 <pre>
  grep Step oga.export.csv | ruby -rtime -aF, -lne 'BEGIN{steps=Hash.new{0}}; steps[Date.parse $F[2]] += $F[0].to_i; END{steps.sort.map{|k,v| "#{k.strftime "%y-%m-%d(%a)"}:#{"%5d"%v}\n" }.join.display}' | less
 </pre>
+
+# 別のやつ集計整形 count_csv_from_export.rb
+その別のやつを日ごとに集計整形
 
 # おまけ
 
