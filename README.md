@@ -217,7 +217,7 @@ t, p, m = ARGV[2].to_s.split /\D/
 #to_a #compact は ARGV[3 以降] が無かった時対策。
 
 # 別のやつ csv_from_export.rb
-前述 export.xml の方をCSV にする。
+前述 export.xml の方を CSV にする。
 
 csv_from_export.rb
 ```ruby:csv_from_export.rb
@@ -281,7 +281,8 @@ Ogaジェムをインストールしてやってみた、Cエクステンションあり、その他ライブラリ不
 </pre>
 
 # 別のやつ集計整形 count_csv_from_export.rb
-その別のやつを日ごとに集計整形
+その別のやつの CSV を日ごとに集計整形する。  
+一日分として足せるもの(等)は足すし、そうでないもの(等)は時刻を記して並べる。
 
 # おまけ
 
