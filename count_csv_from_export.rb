@@ -154,18 +154,6 @@ class DailyCounts < Hash
       EOReport
     end.join
   end # def report
-
-  def report_i18n(locale=:ja)
-    I18n.locale = locale
-    if keys.min and keys.max then
-      (keys.min..keys.max).map do |day|
-      erb_result <<-EOReport, binding
-<%=l day %>:
-<%= self[day].report %>
-      EOReport
-      end.join
-    end # if keys.min and keys.max
-  end # def repot_i18n(l=:ja)
 end # class DailyCounts < Hash
 
 CSV::Converters[:time13] = ->(cell, info) \
