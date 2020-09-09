@@ -145,8 +145,10 @@ class DailyCounts < Hash
     self
   end # def add(row)
 
-  def report
-    (keys.min..keys.max).map do |day|
+  def report(startDate, endDate)
+    startDate ||= keys.min
+    endDate   ||= keys.max
+    (startDate..endDate).map do |day|
       erb_result(<<-EOReport, binding).force_encoding 'UTF-8'
 <%# coding: utf-8 -%>
 <%=l day %>:
@@ -167,7 +169,9 @@ BODY:
 --------
   EntryEnd
 
-  def to_mt(startDate = Date.new(2020,1,1), endDate = keys.max)
+  def to_mt(startDate, endDate)
+    startDate ||= keys.min
+    endDate   ||= keys.max
     (startDate..endDate).map do |day|
       Entry % {
         author:   'Health Care',
@@ -186,16 +190,34 @@ CSV::Converters[:time13] = ->(cell, info) \
 
 if $PROGRAM_NAME == __FILE__ then
   require 'optparse'
+
+  OptionParser.accept(Date) do |s,|
+    begin
+      Date.parse(s) if s
+    rescue
+      raise OptionParser::InvalidArgument, s
+    end
+  end
+  
+  TandL.effective = false
+  report = :report
+  startDate, endDate = nil, nil
   ARGV.options do |opts|
-    opts.banner += ' <path to (oga_)export.csv>'
-    opts.on('-l L', '--locale=L', 'locale default: en') \
+    opts.banner += ' <path to (oga_)export.csv> or stdin'
+    opts.on('-l L', '--locale=L', 'activate translation to [ja|en]') \
       { |l| TandL.effective = true;  I18n.locale = l.to_sym }
+    opts.on(        '--to_mt',    'report to MT') \
+      { report = :to_mt }
+    opts.on('--startDate=DATE', Date, 'format 2020/08/01') \
+      { |date| startDate = date }
+    opts.on('--endDate=DATE',   Date, 'format 2020/08/31') \
+      { |date| endDate   = date }
+
     opts.parse!
   end # ARGV.options do |opts|
 
   CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
     .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
-    .to_mt.display
-    #.report.display
+  .send(report, startDate, endDate).display
 end # if $PROGRAM_NAME == __FILE__
 
