@@ -154,6 +154,31 @@ class DailyCounts < Hash
       EOReport
     end.join
   end # def report
+
+  Entry = <<-EntryEnd # author title date category body img
+AUTHOR: %<author>s
+TITLE: %<title>s
+DATE: %<date>s
+PRIMARY CATEGORY: %<category>s
+-----
+BODY:
+%<body>s%<img>s
+-----
+--------
+  EntryEnd
+
+  def to_mt(startDate = Date.new(2020,1,1), endDate = keys.max)
+    (startDate..endDate).map do |day|
+      Entry % {
+        author:   'Health Care',
+        title:    l(day),
+        date:     day.strftime('%m/%d/%Y 00:00:00'),
+        category: 'Health Care',
+        body:     self[day].report.chomp,
+        img:      nil,
+      }
+    end.join
+  end # def to_mt(startDate: Date.new(2020,8,1), endDate: Date.new(2020,9,1))
 end # class DailyCounts < Hash
 
 CSV::Converters[:time13] = ->(cell, info) \
@@ -170,6 +195,7 @@ if $PROGRAM_NAME == __FILE__ then
 
   CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
     .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
-    .report.display
+    .to_mt.display
+    #.report.display
 end # if $PROGRAM_NAME == __FILE__
 
