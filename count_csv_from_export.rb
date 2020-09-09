@@ -38,7 +38,7 @@ module TypeDates
     field Headers.size+0 unless /Correlation/ =~ type
   end # def value
   def unit
-  #  field Headers.size+1 unless /Correlation/ =~ type
+    field Headers.size+1 unless /Correlation/ =~ type
   end # def unit
 
   def values
