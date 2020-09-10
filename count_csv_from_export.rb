@@ -64,41 +64,41 @@ class Counts < Hash
   def initialize
     super() do |hash, key|
       arr = []
+      arr.extend TandL
 
       case key
       when /Correlation/ then
-        arr.extend TandL
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
               + row.rels.map{ |rel|
-                "#{t rel.type} #{rel.value} #{rel.unit}"
+                "#{t rel.type} #{rel.value} #{t rel.unit, scope: :unit}"
               }.join(' / ')
           end # map do |row|
         end # def arr.report
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
           sum = inject( 0 ){|s, row| s + row.value.to_i }
-          ["      %d %s" % [sum, first.unit]]
+          ["      %d %s" % [sum, t(first.unit, scope: :unit)]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
           sum = inject(0.0){|s, row| s + row.value.to_f }
-          ["      %.3f %s" % [sum, first.unit]]
+          ["      %.3f %s" % [sum, t(first.unit, scope: :unit)]]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, row.unit]
+              + '%4.1f %s' % [row.value, t(row.unit, scope: :unit)]
           end # map do |row|
         end # def arr.report
       when /HeadphoneAudioExposure/ then
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, row.unit] \
-              + ' (%4.1f min)' % ((row.endDate-row.startDate)/60)
+              + '%4.1f %s' % [row.value, t(row.unit, scope: :unit)] \
+      + " (%4.1f #{t 'min', scope: :unit})" % ((row.endDate-row.startDate)/60)
           end # map do |row|
         end # def arr.report
       else

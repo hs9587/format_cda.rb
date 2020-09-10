@@ -21,3 +21,13 @@ ja:
   DietaryPotassium:   'カリウム'
   BloodGlucose:       '血糖値'
 
+  unit:
+          kg:        'kg'
+          count/min: '拍/分'
+          degC:      '℃'
+          count:     ''
+          km:        'km'
+          mmHg:      'mmHg'
+          dBASPL:    'dBA SPL'
+          min:       '分'
+
