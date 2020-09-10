@@ -45,6 +45,10 @@ module TypeDates
     values_at (Headers.size+0)..-1
   end # def values
 
+  def behinds
+    values_at (Headers.size+2)..-1
+  end # def behinds
+
   def rels
     if /Correlation/ =~ type then
       values.each_slice(3) \
@@ -104,7 +108,9 @@ class Counts < Hash
       else
         def arr.report
           map do |row|
-            "#{row.startDate.strftime '%H:%M'} #{row.values.join(' ')}"
+            "#{row.startDate.strftime '%H:%M'} " \
+              + "#{row.value} #{t row.unit, scope: :unit} " \
+              + "#{row.behinds.join(' ')}"
           end # map do |row|
         end # def arr.report
       end # case key
