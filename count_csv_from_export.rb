@@ -18,13 +18,18 @@ module TandL
   end # def self.effective=(v)
 
   private
+    def l(object, *options) 
+      @@effective ? I18n.l(object, *options) : object
+    end # def l(object, *options) 
+
     def t(object, *options) 
       @@effective ? I18n.t(object, *options) : object
       #@@effective ? I18n.t(object, raise: true) : object
     end # def t(object, *options) 
-    def l(object, *options) 
-      @@effective ? I18n.l(object, *options) : object
-    end # def l(object, *options) 
+
+    def u(object, type=nil)
+      t object, scope: [:unit, type]
+    end # def u(object, type=nil)
   # private
 end # module TandL
 
@@ -76,40 +81,40 @@ class Counts < Hash
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
               + row.rels.map{ |rel|
-                "#{t rel.type} #{rel.value} #{t rel.unit, scope: :unit}"
+                "#{t rel.type} #{rel.value} #{u rel.unit}"
               }.join(' / ')
           end # map do |row|
         end # def arr.report
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
           sum = inject( 0 ){|s, row| s + row.value.to_i }
-          ["      %d %s" % [sum, t(first.unit, scope: :unit)]]
+          ["      %d %s" % [sum, u(first.unit)]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
           sum = inject(0.0){|s, row| s + row.value.to_f }
-          ["      %.3f %s" % [sum, t(first.unit, scope: :unit)]]
+          ["      %.3f %s" % [sum, u(first.unit)]]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, t(row.unit, scope: :unit)]
+              + '%4.1f %s' % [row.value, u(row.unit)]
           end # map do |row|
         end # def arr.report
       when /HeadphoneAudioExposure/ then
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, t(row.unit, scope: :unit)] \
-      + " (%4.1f #{t 'min', scope: :unit})" % ((row.endDate-row.startDate)/60)
+              + '%4.1f %s' % [row.value, u(row.unit)] \
+      + " (%4.1f #{u 'min'})" % ((row.endDate-row.startDate)/60)
           end # map do |row|
         end # def arr.report
       else
         def arr.report
           map do |row|
             "#{row.startDate.strftime '%H:%M'} " \
-              + "#{row.value} #{t row.unit, scope: :unit} " \
+              + "#{row.value} #{u row.unit} " \
               + "#{row.behinds.join(' ')}"
           end # map do |row|
         end # def arr.report
