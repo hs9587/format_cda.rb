@@ -25,9 +25,12 @@ ja:
           kg:        'kg'
           count/min: '拍/分'
           degC:      '℃'
-          count:     ''
           km:        'km'
           mmHg:      'mmHg'
           dBASPL:    'dBA SPL'
           min:       '分'
+          HKQuantityTypeIdentifierStepCount:
+                  count: '歩'
+          HKQuantityTypeIdentifierFlightsClimbed:
+                  count: '階'
 

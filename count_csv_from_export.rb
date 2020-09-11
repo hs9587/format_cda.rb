@@ -88,7 +88,7 @@ class Counts < Hash
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
           sum = inject( 0 ){|s, row| s + row.value.to_i }
-          ["      %d %s" % [sum, u(first.unit)]]
+          ["      %d %s" % [sum, u(first.unit, first.type)]]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
