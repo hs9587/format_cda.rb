@@ -62,7 +62,7 @@ module TypeDates
           Module.new{ Rel.each_with_index{ |k, i| define_method(k){ slice i }}} 
       end \
       .sort.reverse
-      # type ‚Ì•¶š—ñ‡Areverse ‚ÅŒŒˆ³‚ªûkŠú(Systolic)Šg’£Šú(Diastolic)‚Ì‡‚É
+      # type ã®æ–‡å­—åˆ—é †ã€reverse ã§è¡€åœ§ãŒåç¸®æœŸ(Systolic)æ‹¡å¼µæœŸ(Diastolic)ã®é †ã«
     end # if /Correlation/ =~ type
   end # def rels
 end # module TypeDates
@@ -135,8 +135,8 @@ class Counts < Hash
     <%= line.gsub keyword, '' %>
   <%- end -%>
       EOReport
-      # gsub keyword ‚Å BloodPressure ‚Ì•\¦‚ğ‚¿‚å‚Á‚Æ—}§
-      # ‚»‚ê‚Å translation missing ƒGƒ‰[ƒƒbƒZ[ƒW‚©‚ç¯•Ê‚ª¸‚í‚ê‚é‚Ì’ˆÓ
+      # gsub keyword ã§ BloodPressure ã®è¡¨ç¤ºã‚’ã¡ã‚‡ã£ã¨æŠ‘åˆ¶
+      # ãã‚Œã§ translation missing ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‹ã‚‰è­˜åˆ¥ãŒå¤±ã‚ã‚Œã‚‹ã®æ³¨æ„
     end \
       .join 
   end # def report
