@@ -27,6 +27,7 @@ ja:
           degC:      '℃'
           km:        'km'
           mmHg:      'mmHg'
+          mg:        'mg'
           dBASPL:    'dBA SPL'
           min:       '分'
           HKQuantityTypeIdentifierStepCount:
