@@ -136,6 +136,7 @@ class Counts < Hash
   <%- end -%>
       EOReport
       # gsub keyword で BloodPressure の表示をちょっと抑制
+      # それで translation missing エラーメッセージから識別が失われるの注意
     end \
       .join 
   end # def report
