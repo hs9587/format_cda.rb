@@ -190,7 +190,7 @@ BODY:
         title:    l(day),
         date:     day.strftime('%m/%d/%Y 00:00:00'),
         category: 'Health Care',
-        body:     self[day].report.chomp,
+        body:     self[day].report.gsub(/^  /,'').gsub(/ +/,' ').chomp,
         img:      nil,
       }
     end.join
