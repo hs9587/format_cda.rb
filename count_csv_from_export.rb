@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'csv'
 require 'time'
 require 'erb'
@@ -186,10 +187,10 @@ BODY:
     endDate   ||= keys.max
     (startDate..endDate).map do |day|
       Entry % {
-        author:   'Health Care',
+        author:   'ヘルスケア',
         title:    l(day),
         date:     day.strftime('%m/%d/%Y 00:00:00'),
-        category: 'Health Care',
+        category: 'ヘルスケア',
         body:     self[day].report.gsub(/^  /,'').gsub(/ +/,' ').chomp,
         img:      nil,
       }
