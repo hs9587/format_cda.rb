@@ -28,6 +28,8 @@ ja:
           km:        'km'
           mmHg:      'mmHg'
           mg:        'mg'
+          mg/dL:     'mg/dL'
+          cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       '分'
           HKQuantityTypeIdentifierStepCount:
