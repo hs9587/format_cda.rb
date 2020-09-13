@@ -24,8 +24,15 @@ module TandL
     end # def l(object, *options) 
 
     def t(object, *options) 
-      @@effective ? I18n.t(object, *options) : object
+      #@@effective ? I18n.t(object, *options) : object
       #@@effective ? I18n.t(object, raise: true) : object
+      result = @@effective ? I18n.t(object, *options) : object
+      unless /translation missing: / =~ result then
+        result
+      else# unless /translation missing: / =~ result
+        result.+("\n").display $stderr
+        object
+      end # unless /translation missing: / =~ result 
     end # def t(object, *options) 
 
     def u(object, type=nil)
