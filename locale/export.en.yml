@@ -1,2 +1,37 @@
+# coding: UTF-8
 en:
-  asdf: 'asdf'
+  BodyMass:        'BodyMass'
+  HeartRate:       'HeartRate'
+  BodyTemperature: 'BodyTemperature'
+  StepCount:       'StepCount'
+  DistanceWalkingRunning: 'DistanceWalkingRunning'
+  FlightsClimbed:  'FlightsClimbed'
+  HeadphoneAudioExposure: 'HeadphoneAudioExposure'
+
+  BloodPressure:          'BloodPressure'
+  BloodPressureSystolic:  'Systolic'
+  BloodPressureDiastolic: 'Diastolic'
+
+  Height:             'Height'
+  WaistCircumference: 'WaistCircumference'
+  DietarySodium:      'DietarySodium'
+  DietaryChloride:    'DietaryChloride'
+  DietaryPotassium:   'DietaryPotassium'
+  BloodGlucose:       'BloodGlucose'
+
+  unit:
+          kg:        'kg'
+          count/min: 'count/min'
+          degC:      'deg C'
+          km:        'km'
+          mmHg:      'mmHg'
+          mg:        'mg'
+          mg/dL:     'mg/dL'
+          cm:        'cm'
+          dBASPL:    'dBA SPL'
+          min:       'min'
+          HKQuantityTypeIdentifierStepCount:
+                  count: 'count'
+          HKQuantityTypeIdentifierFlightsClimbed:
+                  count: 'count'
+
