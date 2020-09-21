@@ -198,9 +198,11 @@ BODY:
         title:    l(day),
         date:     day.strftime('%m/%d/%Y 00:00:00'),
         category: 'ヘルスケア',
-        body:     self[day].report.gsub(/^  /,'').gsub(/ +/,' ').chomp,
+        body:  self[day].report.gsub(/^  /,'') \
+          .gsub(/  /,'&nbsp;&nbsp;&nbsp;').chomp,
         img:      nil,
       }
+        #body:     self[day].report.gsub(/^  /,'').gsub(/ +/,' ').chomp,
     end.join
   end # def to_mt(startDate: Date.new(2020,8,1), endDate: Date.new(2020,9,1))
 end # class DailyCounts < Hash
