@@ -13,9 +13,10 @@ REXML::Document.new(ARGF.read) \
     .map do |key, (method, value)|
       comp.get_elements("*//#{key}").first.send(method).send(value)
     end \
-    .join(',')
+    .join(',') \
+    .+("\n")
   end \
 #  .sort \
   .reverse \
-  .join("\n") \
+  .join \
   .display
