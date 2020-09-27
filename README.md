@@ -91,10 +91,41 @@ XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚
 
 
 # oga_csv_from_export_cda.rb
+REXML ‚¿‚å‚Á‚Æ’x‚¢‚©‚ÆA OgaƒWƒFƒ€(CƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ ‚èA‚»‚Ì‘¼ƒ‰ƒCƒuƒ‰ƒŠ•sg—p)‚ÅB
+
 oga_csv_from_export_cda.rb
 ```ruby:oga_csv_from_export_cda.rb
-```
+require 'oga'
 
+Oga::XML::Parser.new(ARGF.read) \
+  .parse \
+  .xpath('//component//component') \
+  .map do |comp|
+    {
+      high:  [:attribute, :value],
+      value: [:text],
+      unit:  [:text],
+      type:  [:text],
+    }.map do |key, method|
+      comp.xpath(".//#{key}").send(*method)
+    end \
+    .join(',') \
+    .+("\n")
+  end \
+#  .sort \
+  .reverse \
+  .join \
+  .display
+```
+REXML ‚Æ‚ÍƒIƒuƒWƒFƒNƒg\‘¢‚¿‚å‚Á‚Æˆá‚¤‚âB  
+component—v‘f‚Í“ü‚êq‚É‚È‚Á‚Ä‚é‚Ì‚¾‚¯‚ÇA//component ‚¾‚¯‚Å‚Íe‚Æq‚Æd•¡‚µ‚Ä—¼•ûæ‚Á‚Ä—ˆ‚Ä‚­‚ê‚é‚Ì‚ÅA“ü‚êq‚ğ–¾‹L‚µ‚½B
+<pre>
+C:\Users\hs9587\cc\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHub‚æ‚è" "‘‚«o‚µ‚½ƒf[ƒ^\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
+15.200345
+C:\Users\hs9587\cc\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "oga_csv_from_export_cda.rb GitHub‚æ‚è" "‘‚«o‚µ‚½ƒf[ƒ^\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
+1.791207
+</pre>
+ˆêŒ…ˆá‚¤‚©B
 
 # apple_health_export o—Í‚Ì®Œ` format_cda.rb
 [https://hs9587.hatenablog.com/entry/2020/04/19/140001]
