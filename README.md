@@ -77,10 +77,11 @@ REXML::Document.new(ARGF.read) \
     .map do |key, (method, value)|
       comp.get_elements("*//#{key}").first.send(method).send(value)
     end \
-    .join(',')
+    .join(',') \
+    .+("\n")
   end \
 #  .sort \
-  .join("\n") \
+  .join \
   .display
 ```
 XML項目の説明は特にしないが、日付 observation/effectiveTime/high は属性値に値があるので #attributes.values で値を取る、そうすると配列になるのだが、属性が一つしかないのでまあ何とかなる。
@@ -122,10 +123,6 @@ REXML とはオブジェクト構造ちょっと違う、要素や値への参照違う。
 
 実行時間  
 (CF-S10)
-```ruby:oga_csv_from_export_cda.rb
-C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
-47.003567
-```
 <pre>
 C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
 47.003567
