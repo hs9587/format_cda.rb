@@ -117,8 +117,8 @@ Oga::XML::Parser.new(ARGF.read) \
   .join \
   .display
 ```
-REXML とはオブジェクト構造ちょっと違うや。  
-component要素は入れ子になってるのだけど、//component だけでは親と子と重複して両方取って来てくれるので、入れ子を明記した。
+REXML とはオブジェクト構造ちょっと違う、要素や値への参照違う。  
+そして component要素は入れ子になってるのだけど、//component だけでは親と子と重複して両方取って来てくれるので、入れ子を明示した。
 <pre>
 C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
 15.200345
