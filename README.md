@@ -118,20 +118,20 @@ Oga::XML::Parser.new(ARGF.read) \
   .join \
   .display
 ```
-REXML とはオブジェクト構造ちょっと違う、要素や値への参照違う。  
+REXML とはオブジェクト構造ちょっと違う、要素や値への参照も違う。  
 そして component要素は入れ子になってるのだけど、'//component' だけでは親と子と重複して両方取って来てくれるので、入れ子を明示した。
 
 実行時間  
 (CF-S10)
 <pre>
-C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
+C:……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
 47.003567
 </pre>
 (CF-RZ6)
 <pre>
-C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
+C:……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
 15.200345
-C:\Users\hs9587\……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "oga_csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
+C:……\iPhone_HelthCareData>ruby -e 'start=Time.now;`ruby "oga_csv_from_export_cda.rb GitHubより" "書き出したデータ\\apple_health_export\\export_cda.xml"`;(Time.now-start).display'
 1.791207
 </pre>
 一桁とか違う。
