@@ -51,6 +51,7 @@ export.xml ‚Ì•û‚ÍƒTƒCƒY‚ª‘å‚«‚¢—Ê‚à‘½‚­AIPhone ‚Å©“®ûW‚³‚ê‚éƒf[ƒ^A•à”‚Æ‚©
 - [iPhone ‚Ìƒwƒ‹ƒXƒPƒA apple_health_export](#iPhone-‚Ìƒwƒ‹ƒXƒPƒA-apple_health_export)
   - [–ÚŸ](#–ÚŸ)
 - [CSV‰» csv_from_export_cda.rb](#CSV‰»-csv_from_export_cdarb)
+-- [oga_csv_from_export_cda.rb](#oga_csv_from_export_cdarb)
 - [apple_health_export o—Í‚Ì®Œ` format_cda.rb](#apple_health_export-o—Í‚Ì®Œ`-format_cdarb)
 - [Å‹ß1–‡•ª latest_cda.rb](#Å‹ß1–‡•ª-latest_cdarb)
 - [•Ê‚Ì‚â‚Â csv_from_export.rb](#•Ê‚Ì‚â‚Â-csv_from_exportrb)
@@ -87,6 +88,12 @@ XML€–Ú‚Ìà–¾‚Í“Á‚É‚µ‚È‚¢‚ªA“ú•t observation/effectiveTime/high ‚Í‘®«’l‚É’l‚ª‚
 >ruby csv_from_export_cda.rb ‘‚«o‚µ‚½ƒf[ƒ^\apple_health_export\export_cda.xml
 ```
 ‚±‚ñ‚ÈŠ´‚¶‚©‚ÈB
+
+
+# oga_csv_from_export_cda.rb
+oga_csv_from_export_cda.rb
+```ruby:oga_csv_from_export_cda.rb
+```
 
 
 # apple_health_export o—Í‚Ì®Œ` format_cda.rb
