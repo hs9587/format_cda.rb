@@ -176,7 +176,7 @@ class DailyCounts < Hash
 <%= self[day].report %>
       EOReport
     end.join
-  end # def report
+  end # def report(startDate, endDate, options)
 
   Entry = <<-EntryEnd # author title date category body img
 AUTHOR: %<author>s
@@ -190,10 +190,11 @@ BODY:
 --------
   EntryEnd
 
-  def to_mt(startDate, endDate)
+  def to_mt(startDate, endDate, options)
+    reverse_or = options[:reverse] ? :reverse_each : :each
     startDate ||= keys.min
     endDate   ||= keys.max
-    (startDate..endDate).map do |day|
+    (startDate..endDate).send(reverse_or).map do |day|
       Entry % {
         author:   'ヘルスケア',
         title:    l(day),
@@ -205,7 +206,7 @@ BODY:
       }
         #body:     self[day].report.gsub(/^  /,'').gsub(/ +/,' ').chomp,
     end.join
-  end # def to_mt(startDate: Date.new(2020,8,1), endDate: Date.new(2020,9,1))
+  end # def to_mt(startDate, endDate, options)
 end # class DailyCounts < Hash
 
 CSV::Converters[:time13] = ->(cell, info) \
