@@ -165,10 +165,11 @@ class DailyCounts < Hash
     self
   end # def add(row)
 
-  def report(startDate, endDate)
+  def report(startDate, endDate, options)
+    reverse_or = options[:reverse] ? :reverse_each : :each
     startDate ||= keys.min
     endDate   ||= keys.max
-    (startDate..endDate).map do |day|
+    (startDate..endDate).send(reverse_or).map do |day|
       erb_result(<<-EOReport, binding).force_encoding 'UTF-8'
 <%# coding: utf-8 -%>
 <%=l day %>:
@@ -224,6 +225,7 @@ if $PROGRAM_NAME == __FILE__ then
   TandL.effective = false
   report = :report
   startDate, endDate = nil, nil
+  reverse = false
   ARGV.options do |opts|
     opts.banner += ' <path to (oga_)export.csv> or stdin'
     opts.on('-l L', '--locale=L', 'activate translation to [ja|en]') \
@@ -234,12 +236,13 @@ if $PROGRAM_NAME == __FILE__ then
       { |date| startDate = date }
     opts.on('--endDate=DATE',   Date, 'format 2020/08/31') \
       { |date| endDate   = date }
+    opts.on('--reverse', 'reverse order') { |r| reverse = true }
 
     opts.parse!
   end # ARGV.options do |opts|
 
   CSV.parse(ARGF.read, converters: :time13, headers: TypeDates::Headers) \
     .inject(DailyCounts.new){ |dcs, row| dcs.add row } \
-  .send(report, startDate, endDate).display
+  .send(report, startDate, endDate, reverse: reverse).display
 end # if $PROGRAM_NAME == __FILE__
 
