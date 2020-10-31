@@ -237,7 +237,7 @@ if $PROGRAM_NAME == __FILE__ then
       { |date| startDate = date }
     opts.on('--endDate=DATE',   Date, 'format 2020/08/31') \
       { |date| endDate   = date }
-    opts.on('--reverse', 'reverse order') { |r| reverse = true }
+    opts.on('--reverse', 'reverse order in dates') { |r| reverse = true }
 
     opts.parse!
   end # ARGV.options do |opts|
