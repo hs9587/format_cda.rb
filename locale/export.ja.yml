@@ -19,6 +19,7 @@ ja:
   DietarySodium:      'ナトリウム'
   DietaryChloride:    '塩化物'
   DietaryPotassium:   'カリウム'
+  DietaryProtein:     'たんぱく質'
   BloodGlucose:       '血糖値'
 
   unit:
@@ -27,6 +28,7 @@ ja:
           degC:      '℃'
           km:        'km'
           mmHg:      'mmHg'
+          g:         'g'
           mg:        'mg'
           mg/dL:     'mg/dL'
           cm:        'cm'
