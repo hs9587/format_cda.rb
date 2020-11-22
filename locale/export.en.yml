@@ -19,17 +19,24 @@ en:
   DietaryPotassium:   'DietaryPotassium'
   BloodGlucose:       'BloodGlucose'
 
+  WalkingSpeed:                   'WalkingSpeed'
+  WalkingDoubleSupportPercentage: 'WalkingDoubleSupportPercentage'
+  WalkingStepLength:              'WalkingStepLength'
+  WalkingAsymmetryPercentage:     'WalkingAsymmetryPercentage'
+
   unit:
           kg:        'kg'
           count/min: 'count/min'
           degC:      'deg C'
           km:        'km'
+          km/hr:     'km/hr'
           mmHg:      'mmHg'
           mg:        'mg'
           mg/dL:     'mg/dL'
           cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       'min'
+          '%':       '%'
           HKQuantityTypeIdentifierStepCount:
                   count: 'count'
           HKQuantityTypeIdentifierFlightsClimbed:

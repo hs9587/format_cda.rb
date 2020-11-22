@@ -22,11 +22,17 @@ ja:
   DietaryProtein:     'たんぱく質'
   BloodGlucose:       '血糖値'
 
+  WalkingSpeed:                   '歩行速度'
+  WalkingDoubleSupportPercentage: '歩行両脚支持時間'
+  WalkingStepLength:              '歩幅'
+  WalkingAsymmetryPercentage:     '歩行非対称性'
+
   unit:
           kg:        'kg'
           count/min: '拍/分'
           degC:      '℃'
           km:        'km'
+          km/hr:     'km/h'
           mmHg:      'mmHg'
           g:         'g'
           mg:        'mg'
@@ -34,6 +40,7 @@ ja:
           cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       '分'
+          '%':       '%'
           HKQuantityTypeIdentifierStepCount:
                   count: '歩'
           HKQuantityTypeIdentifierFlightsClimbed:
