@@ -2,13 +2,13 @@ require 'oga'
 
 Oga::XML::Parser.new(ARGF.read) \
   .parse \
-  .xpath('//component//component') \
+  .xpath('//component//component/observation') \
   .map do |comp|
     {
-      high:  [:attribute, :value],
-      value: [:text],
-      unit:  [:text],
-      type:  [:text],
+      'effectiveTime/high': [:attribute, :value],
+      'text/value':         [:text],
+      'text/unit':          [:text],
+      'text/type':          [:text],
     }.map do |key, method|
       comp.xpath(".//#{key}").send(*method)
     end \
