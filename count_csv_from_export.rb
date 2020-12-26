@@ -103,6 +103,20 @@ class Counts < Hash
           sum = inject(0.0){|s, row| s + row.value.to_f }
           ["      %.3f %s" % [sum, u(first.unit)]]
         end # def arr.report
+      when /erWalking/ then
+        # HKQuantityTypeIdentifierWalking..
+        def arr.report
+          #sum = inject(0.0){|s, row| s + row.value.to_f }
+          #interval = inject(0.0){|s, row| s + (row.endDate - row.startDate) }
+          w_sum, interval = inject([0.0, 0.0]) do |(s, i), row|
+            d  = (row.endDate - row.startDate)
+            s += row.value.to_f * d
+            i += d
+            [s, i]
+          end
+          #["a   %.3f %s %f" % [sum, u(first.unit), interval]]
+          ["     %6.3f %-5s (%3.1f min)" % [w_sum/interval, u(first.unit), interval/60]]
+        end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
           map do |row|
