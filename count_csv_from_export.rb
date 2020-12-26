@@ -114,8 +114,12 @@ class Counts < Hash
             i += d
             [s, i]
           end
-          #["a   %.3f %s %f" % [sum, u(first.unit), interval]]
-          ["     %6.3f %-5s (%3.1f min)" % [w_sum/interval, u(first.unit), interval/60]]
+          weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
+            d  = (row.endDate - row.startDate)
+            w_i[0] +=  row.value.to_f * d
+            w_i[1] +=  d
+          end # weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
+          ["      %6.3f %-5s (%4.1f #{u 'min'})" % [weighted/interval, u(first.unit), interval/60]]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
