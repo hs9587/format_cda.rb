@@ -95,15 +95,15 @@ class Counts < Hash
         end # def arr.report
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
-          sum = inject( 0 ){|s, row| s + row.value.to_i }
+          sum = inject(0){|s, row| s + row.value.to_i }
           sum, distance = each_with_object([0, 0.0]) do |row, s_d|
             s_d[0] +=  row.value.to_i
             s_d[1] += (row.endDate - row.startDate)
           end # sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
           #["      %d %s" % [sum, u(first.unit, first.type)]]
-          [['      %4d'.%(sum),
-            '%-6s'.%('%3s'.%(u first.unit, first.type)),
-                "(%4.1f #{u 'min'})".%(distance/60),
+          [['      %5d'.%(sum),
+            '%s'.%(u first.unit, first.type),
+            "(%4.1f #{u 'min'})".%(distance/60),
             ].join(' ')]
         end # def arr.report
       when /DistanceWalkingRunning/ then
@@ -115,8 +115,8 @@ class Counts < Hash
           end # sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
           #["      %.3f %s %s" % [sum, u(first.unit), distance/60]]
           [['      %.3f'.%(sum),
-                  '%-6s'.%('%3s'.%(u first.unit)),
-                "(%4.1f #{u 'min'})".%(distance/60),
+            '%s'.%(u first.unit, first.type),
+            "(%4.1f #{u 'min'})".%(distance/60),
             ].join(' ')]
         end # def arr.report
       when /erWalking/ then
@@ -128,7 +128,7 @@ class Counts < Hash
             w_d[1]  +=  interval
           end # weighted, distance = each_with_object([0.0, 0.0]) do |row, w_d|
           [['      %6.3f'.%(weighted/distance),
-              '%-5s'.%('%2s'.%(u first.unit)),
+              '%-4s'.%('%2s'.%(u first.unit)),
            "(%4.1f #{u 'min'})".%(distance/60),
             ].join(' ')]
         end # def arr.report
