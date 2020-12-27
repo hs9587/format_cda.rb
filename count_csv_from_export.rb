@@ -96,7 +96,15 @@ class Counts < Hash
       when /StepCount/,/FlightsClimbed/ then
         def arr.report
           sum = inject( 0 ){|s, row| s + row.value.to_i }
-          ["      %d %s" % [sum, u(first.unit, first.type)]]
+          sum, distance = each_with_object([0, 0.0]) do |row, s_d|
+            s_d[0] +=  row.value.to_i
+            s_d[1] += (row.endDate - row.startDate)
+          end # sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
+          #["      %d %s" % [sum, u(first.unit, first.type)]]
+          [['      %4d'.%(sum),
+            '%-6s'.%('%3s'.%(u first.unit, first.type)),
+                "(%4.1f #{u 'min'})".%(distance/60),
+            ].join(' ')]
         end # def arr.report
       when /DistanceWalkingRunning/ then
         def arr.report
@@ -105,7 +113,11 @@ class Counts < Hash
             s_d[0] +=  row.value.to_f
             s_d[1] += (row.endDate - row.startDate)
           end # sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
-          ["      %.3f %s %s" % [sum, u(first.unit), distance/60]]
+          #["      %.3f %s %s" % [sum, u(first.unit), distance/60]]
+          [['      %.3f'.%(sum),
+                  '%-6s'.%('%3s'.%(u first.unit)),
+                "(%4.1f #{u 'min'})".%(distance/60),
+            ].join(' ')]
         end # def arr.report
       when /erWalking/ then
         # HKQuantityTypeIdentifierWalking..
