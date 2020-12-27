@@ -127,7 +127,8 @@ class Counts < Hash
             w_i[0] += row.value.to_f * delta
             w_i[1] += delta
           end # weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
-          [['      %6.3f'.%(weighted/interval),
+          [['     ',
+first.unit=='%' ? '%6.1f'.%(weighted/interval*100):'%6.3f'.%(weighted/interval),
               '%-4s'.%('%2s'.%(u first.unit)),
            "(%4.1f #{u 'min'})".%(interval/60),
             ].join(' ')]
