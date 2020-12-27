@@ -101,25 +101,24 @@ class Counts < Hash
       when /DistanceWalkingRunning/ then
         def arr.report
           sum = inject(0.0){|s, row| s + row.value.to_f }
-          ["      %.3f %s" % [sum, u(first.unit)]]
+          sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
+            s_d[0] +=  row.value.to_f
+            s_d[1] += (row.endDate - row.startDate)
+          end # sum, distance = each_with_object([0.0, 0.0]) do |row, s_d|
+          ["      %.3f %s %s" % [sum, u(first.unit), distance/60]]
         end # def arr.report
       when /erWalking/ then
         # HKQuantityTypeIdentifierWalking..
         def arr.report
-          #sum = inject(0.0){|s, row| s + row.value.to_f }
-          #interval = inject(0.0){|s, row| s + (row.endDate - row.startDate) }
-          w_sum, interval = inject([0.0, 0.0]) do |(s, i), row|
-            d  = (row.endDate - row.startDate)
-            s += row.value.to_f * d
-            i += d
-            [s, i]
-          end
-          weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
-            d  = (row.endDate - row.startDate)
-            w_i[0] +=  row.value.to_f * d
-            w_i[1] +=  d
-          end # weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
-          ["      %6.3f %-5s (%4.1f #{u 'min'})" % [weighted/interval, u(first.unit), interval/60]]
+          weighted, distance = each_with_object([0.0, 0.0]) do |row, w_d|
+            interval = (row.endDate - row.startDate)
+            w_d[0]  +=  row.value.to_f * interval
+            w_d[1]  +=  interval
+          end # weighted, distance = each_with_object([0.0, 0.0]) do |row, w_d|
+          [['      %6.3f'.%(weighted/distance),
+              '%-5s'.%('%2s'.%(u first.unit)),
+           "(%4.1f #{u 'min'})".%(distance/60),
+            ].join(' ')]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
