@@ -115,7 +115,7 @@ class Counts < Hash
             s_i[1] += (row.endDate - row.startDate)
           end # sum, interval = each_with_object([0.0, 0.0]) do |row, s_i|
           [['      %.3f'.%(sum),
-            '%s'.%(u first.unit, first.type),
+            '%s'.%(u first.unit),
             " (%4.1f #{u 'min'})".%(interval/60),
             ].join(' ')]
         end # def arr.report
