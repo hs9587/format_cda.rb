@@ -108,10 +108,6 @@ class Counts < Hash
         def arr.report
           #sum = inject(0){|s, row| s + row.value.to_i }
           #["      %d %s" % [sum, u(first.unit, first.type)]]
-          sum, interval = each_with_object([0, 0.0]) do |row, s_i|
-            s_i[0] +=  row.value.to_i
-            s_i[1] += (row.endDate - row.startDate)
-          end # sum, interval = each_with_object([0, 0.0]) do |row, s_i|
           sum, w, interval = self.integrate
           [['      %5d'.%(sum.to_i),
             '%s'.%(u first.unit, first.type),
@@ -122,10 +118,6 @@ class Counts < Hash
         def arr.report
           #sum = inject(0.0){|s, row| s + row.value.to_f }
           #["      %.3f %s %s" % [sum, u(first.unit), interval/60]]
-          sum, interval = each_with_object([0.0, 0.0]) do |row, s_i|
-            s_i[0] +=  row.value.to_f
-            s_i[1] += (row.endDate - row.startDate)
-          end # sum, interval = each_with_object([0.0, 0.0]) do |row, s_i|
           sum, w, interval = self.integrate
           [['      %.3f'.%(sum),
             '%s'.%(u first.unit),
@@ -135,11 +127,6 @@ class Counts < Hash
       when /erWalking/ then
         # HKQuantityTypeIdentifierWalking..
         def arr.report
-          weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
-            delta  = (row.endDate - row.startDate)
-            w_i[0] += row.value.to_f * delta
-            w_i[1] += delta
-          end # weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
           s, weighted, interval = self.integrate
           [['     ',
 first.unit=='%' ? '%6.1f'.%(weighted/interval*100):'%6.3f'.%(weighted/interval),
