@@ -128,9 +128,14 @@ class Counts < Hash
         # HKQuantityTypeIdentifierWalking..
         def arr.report
           s, weighted, interval = self.integrate
+          w_sum = if first.unit=='%' then
+            '%6.1f' % (weighted/interval * 100)
+          else# if first.unit=='%'
+            '%6.3f' % (weighted/interval)
+          end # if first.unit=='%'
           [['     ',
-first.unit=='%' ? '%6.1f'.%(weighted/interval*100):'%6.3f'.%(weighted/interval),
-              '%-4s'.%('%2s'.%(u first.unit)),
+            w_sum,
+           '%-4s'.%('%2s'.%(u first.unit)),
            "(%4.1f #{u 'min'})".%(interval/60),
             ].join(' ')]
         end # def arr.report
