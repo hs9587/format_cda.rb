@@ -75,13 +75,24 @@ module TypeDates
   end # def rels
 end # module TypeDates
 
+module Integrate
+  def integrate
+    each_with_object([0.0, 0.0, 0.0]) do |row, s_w_i|
+      delta    = (row.endDate - row.startDate)
+      s_w_i[0] += row.value.to_f         # s_um
+      s_w_i[1] += row.value.to_f * delta # w_eighted_sum
+      s_w_i[2] += delta                  # i_nterval
+    end # each_with_object([0.0, 0.0, 0.0]) do |row, s_w_i|
+  end # def integrate
+end # module Integrate
+
 class Counts < Hash
   include TandL
 
   def initialize
     super() do |hash, key|
       arr = []
-      arr.extend TandL
+      arr.extend TandL, Integrate
 
       case key
       when /Correlation/ then
@@ -127,6 +138,7 @@ class Counts < Hash
             w_i[0] += row.value.to_f * delta
             w_i[1] += delta
           end # weighted, interval = each_with_object([0.0, 0.0]) do |row, w_i|
+          s, weighted, interval = self.integrate
           [['     ',
 first.unit=='%' ? '%6.1f'.%(weighted/interval*100):'%6.3f'.%(weighted/interval),
               '%-4s'.%('%2s'.%(u first.unit)),
