@@ -155,9 +155,10 @@ class Counts < Hash
       when /HeadphoneAudioExposure/ then
         def arr.report
           map do |row|
-            "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, u(row.unit)] \
-      + " (%4.1f #{u 'min'})" % ((row.endDate-row.startDate)/60)
+            [ row.startDate.strftime('%H:%M'),
+             '%4.1f %s' % [row.value, u(row.unit)],
+              minute(row.endDate-row.startDate),
+            ].join(' ')
           end # map do |row|
         end # def arr.report
       else
