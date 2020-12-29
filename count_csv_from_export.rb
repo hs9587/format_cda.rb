@@ -115,8 +115,8 @@ class Counts < Hash
           #sum = inject(0){|s, row| s + row.value.to_i }
           #["      %d %s" % [sum, u(first.unit, first.type)]]
           sum, w, interval = self.integrate
-          [['      %5d'.%(sum.to_i),
-            '%s '.%(u first.unit, first.type),
+          [['      %5d' % sum.to_i,
+            '%s ' % u(first.unit, first.type),
             minute(interval),
             ].join(' ')]
         end # def arr.report
@@ -125,8 +125,8 @@ class Counts < Hash
           #sum = inject(0.0){|s, row| s + row.value.to_f }
           #["      %.3f %s %s" % [sum, u(first.unit), interval/60]]
           sum, w, interval = self.integrate
-          [['      %.3f'.%(sum),
-            '%s'.%(u first.unit),
+          [['      %.3f' % sum,
+            '%s' % u(first.unit),
             minute(interval),
             ].join(' ')]
         end # def arr.report
