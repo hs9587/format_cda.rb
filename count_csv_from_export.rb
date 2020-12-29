@@ -104,10 +104,11 @@ class Counts < Hash
       when /Correlation/ then
         def arr.report
           map do |row|
-            "#{row.startDate.strftime '%H:%M'} " \
-              + row.rels.map{ |rel|
-                "#{t rel.type} #{rel.value} #{u rel.unit}"
+            [ row.startDate.strftime('%H:%M'),
+              row.rels.map{ |rel|
+                [t(rel.type), rel.value, u(rel.unit)].join(' ')
               }.join(' / ')
+            ].join(' ')
           end # map do |row|
         end # def arr.report
       when /StepCount/,/FlightsClimbed/ then
