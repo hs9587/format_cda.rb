@@ -148,8 +148,9 @@ class Counts < Hash
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
           map do |row|
-            "#{row.startDate.strftime '%H:%M'} " \
-              + '%4.1f %s' % [row.value, u(row.unit)]
+            [ row.startDate.strftime('%H:%M'),
+             '%4.1f %s' % [row.value, u(row.unit)],
+             ].join(' ')
           end # map do |row|
         end # def arr.report
       when /HeadphoneAudioExposure/ then
@@ -164,9 +165,10 @@ class Counts < Hash
       else
         def arr.report
           map do |row|
-            "#{row.startDate.strftime '%H:%M'} " \
-              + "#{row.value} #{u row.unit} " \
-              + "#{row.behinds.join(' ')}"
+            [ row.startDate.strftime('%H:%M'),
+             [row.value, u(row.unit)],
+              row.behinds,
+            ].flatten.join(' ')
           end # map do |row|
         end # def arr.report
       end # case key
