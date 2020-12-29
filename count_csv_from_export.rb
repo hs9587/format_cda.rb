@@ -84,6 +84,12 @@ module Integrate
       s_w_i[2] += delta                  # i_nterval
     end # each_with_object([0.0, 0.0, 0.0]) do |row, s_w_i|
   end # def integrate
+
+  private
+    def minute(interval)
+      '(%4.1f %s)' % [interval/60, u('min')]
+    end # def minute(interval)
+  # private
 end # module Integrate
 
 class Counts < Hash
@@ -110,8 +116,8 @@ class Counts < Hash
           #["      %d %s" % [sum, u(first.unit, first.type)]]
           sum, w, interval = self.integrate
           [['      %5d'.%(sum.to_i),
-            '%s'.%(u first.unit, first.type),
-            " (%4.1f #{u 'min'})".%(interval/60),
+            '%s '.%(u first.unit, first.type),
+            minute(interval),
             ].join(' ')]
         end # def arr.report
       when /DistanceWalkingRunning/ then
@@ -121,7 +127,7 @@ class Counts < Hash
           sum, w, interval = self.integrate
           [['      %.3f'.%(sum),
             '%s'.%(u first.unit),
-            " (%4.1f #{u 'min'})".%(interval/60),
+            minute(interval),
             ].join(' ')]
         end # def arr.report
       when /erWalking/ then
@@ -136,7 +142,7 @@ class Counts < Hash
           [['     ',
             w_sum,
            '%-4s'.%('%2s'.%(u first.unit)),
-           "(%4.1f #{u 'min'})".%(interval/60),
+            minute(interval),
             ].join(' ')]
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
