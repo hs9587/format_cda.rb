@@ -112,7 +112,8 @@ class Counts < Hash
             s_i[0] +=  row.value.to_i
             s_i[1] += (row.endDate - row.startDate)
           end # sum, interval = each_with_object([0, 0.0]) do |row, s_i|
-          [['      %5d'.%(sum),
+          sum, w, interval = self.integrate
+          [['      %5d'.%(sum.to_i),
             '%s'.%(u first.unit, first.type),
             " (%4.1f #{u 'min'})".%(interval/60),
             ].join(' ')]
@@ -125,6 +126,7 @@ class Counts < Hash
             s_i[0] +=  row.value.to_f
             s_i[1] += (row.endDate - row.startDate)
           end # sum, interval = each_with_object([0.0, 0.0]) do |row, s_i|
+          sum, w, interval = self.integrate
           [['      %.3f'.%(sum),
             '%s'.%(u first.unit),
             " (%4.1f #{u 'min'})".%(interval/60),
