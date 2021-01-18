@@ -167,7 +167,8 @@ class Counts < Hash
         def arr.report
           map do |row|
             [ row.startDate.strftime('%H:%M'),
-             [row.value, u(row.unit)],
+             #[row.value, u(row.unit)],
+row.unit == '%' ? [row.value.to_f*100, u(row.unit)] : [row.value, u(row.unit)],
               row.behinds,
             ].flatten.join(' ')
           end # map do |row|
