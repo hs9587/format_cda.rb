@@ -24,6 +24,8 @@ en:
   WalkingStepLength:              'WalkingStepLength'
   WalkingAsymmetryPercentage:     'WalkingAsymmetryPercentage'
 
+  OxygenSaturation: 'OxygenSaturation'
+
   unit:
           kg:        'kg'
           count/min: 'count/min'
