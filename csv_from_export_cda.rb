@@ -1,4 +1,5 @@
 require 'rexml/document'
+unit = nil
 
 REXML::Document.new(ARGF.read) \
   .root \
@@ -13,6 +14,7 @@ REXML::Document.new(ARGF.read) \
     .map do |key, (method, value)|
       comp.get_elements("*//#{key}").first.send(method).send(value)
     end \
+      .tap{|row| unit = row[2] }.map.with_index{|cell, i| (i==1 and unit == '%' and cell.to_f<1) ? cell.to_f.*(100).to_s : cell} \
     .join(',') \
     .+("\n")
   end \
