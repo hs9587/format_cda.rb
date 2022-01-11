@@ -4,7 +4,8 @@ require 'time'
 require 'erb'
 
 def erb_result(str, b)
-  ERB.new(str, nil, '-').result b
+  #ERB.new(str, nil, '-').result b
+  ERB.new(str, trim_mode: '-').result b
   # str, safe_level=nil, trim_mode='-'
 end # def erb_result(str, b)
 
