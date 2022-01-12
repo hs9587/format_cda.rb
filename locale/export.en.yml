@@ -17,6 +17,7 @@ en:
   DietarySodium:      'DietarySodium'
   DietaryChloride:    'DietaryChloride'
   DietaryPotassium:   'DietaryPotassium'
+  DietaryProtein:     'DietaryProtein'
   BloodGlucose:       'BloodGlucose'
 
   WalkingSpeed:                   'WalkingSpeed'
@@ -33,6 +34,7 @@ en:
           km:        'km'
           km/hr:     'km/hr'
           mmHg:      'mmHg'
+          g:         'g'
           mg:        'mg'
           mg/dL:     'mg/dL'
           cm:        'cm'
