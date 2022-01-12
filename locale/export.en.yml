@@ -24,6 +24,7 @@ en:
   WalkingDoubleSupportPercentage: 'WalkingDoubleSupportPercentage'
   WalkingStepLength:              'WalkingStepLength'
   WalkingAsymmetryPercentage:     'WalkingAsymmetryPercentage'
+  AppleWalkingSteadiness:         'AppleWalkingSteadiness'
 
   OxygenSaturation: 'OxygenSaturation'
 

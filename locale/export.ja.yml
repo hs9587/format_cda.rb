@@ -26,6 +26,7 @@ ja:
   WalkingDoubleSupportPercentage: '歩行両脚支持時間'
   WalkingStepLength:              '歩幅'
   WalkingAsymmetryPercentage:     '歩行非対称性'
+  AppleWalkingSteadiness:         '歩行安定性'
   
   OxygenSaturation: '取り込まれた酸素のレベル'
 
