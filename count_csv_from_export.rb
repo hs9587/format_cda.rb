@@ -20,14 +20,14 @@ module TandL
   end # def self.effective=(v)
 
   private
-    def l(object, *options) 
-      @@effective ? I18n.l(object, *options) : object
+    def l(object, **options) 
+      @@effective ? I18n.l(object, **options) : object
     end # def l(object, *options) 
 
-    def t(object, *options) 
+    def t(object, **options) 
       #@@effective ? I18n.t(object, *options) : object
       #@@effective ? I18n.t(object, raise: true) : object
-      result = @@effective ? I18n.t(object, *options) : object
+      result = @@effective ? I18n.t(object, **options) : object
       unless /translation missing: / =~ result then
         result
       else# unless /translation missing: / =~ result
