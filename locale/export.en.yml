@@ -41,6 +41,7 @@ en:
           cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       'min'
+          days:      'days'
           '%':       '%'
           HKQuantityTypeIdentifierStepCount:
                   count: 'count'

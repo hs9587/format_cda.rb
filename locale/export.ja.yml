@@ -43,6 +43,7 @@ ja:
           cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       '分'
+          days:      '日間'
           '%':       '%'
           HKQuantityTypeIdentifierStepCount:
                   count: '歩'

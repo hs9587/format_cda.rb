@@ -90,6 +90,10 @@ module Integrate
     def minute(interval)
       '(%4.1f %s)' % [interval/60, u('min')]
     end # def minute(interval)
+
+    def days(interval)
+      '(%4.1f %s)' % [interval/(60*60 * 24), u('days')]
+    end # def days(interval)
   # private
 end # module Integrate
 
@@ -146,6 +150,15 @@ class Counts < Hash
            '%-4s'.%('%2s'.%(u first.unit)),
             minute(interval),
             ].join(' ')]
+        end # def arr.report
+      when /AppleWalkingSteadiness/ then
+        def arr.report
+          map do |row|
+            ['     ',
+             '%3.1f %s' % [row.value.to_f*100, u(row.unit)],
+             days(row.endDate - row.startDate),
+            ].join(' ')
+          end # map do |row|
         end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
