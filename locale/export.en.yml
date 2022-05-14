@@ -1,6 +1,7 @@
 # coding: UTF-8
 en:
   BodyMass:        'BodyMass'
+  BodyMassIndex:   'BodyMassIndex'
   HeartRate:       'HeartRate'
   BodyTemperature: 'BodyTemperature'
   StepCount:       'StepCount'
@@ -47,4 +48,6 @@ en:
                   count: 'count'
           HKQuantityTypeIdentifierFlightsClimbed:
                   count: 'count'
+          HKQuantityTypeIdentifierBodyMassIndex:
+                  count: 'BMI'
 

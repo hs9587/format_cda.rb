@@ -160,6 +160,14 @@ class Counts < Hash
             ].join(' ')
           end # map do |row|
         end # def arr.report
+      when /BodyMassIndex/ then # /BodyMass/ より前にマッチしましょう
+        def arr.report
+          map do |row|
+            [ row.startDate.strftime('%H:%M'),
+              '%4.1f %s' % [row.value, u(row.unit, row.type)],
+             ].join(' ')
+          end # map do |row|
+        end # def arr.report
       when /BodyMass/,/BodyTemperature/ then
         def arr.report
           map do |row|

@@ -3,6 +3,7 @@ ja:
   asdf: 'あｓｄｆ'
 
   BodyMass:        '体重'
+  BodyMassIndex:   'ボディマス指数(BMI)'
   HeartRate:       '心拍数'
   BodyTemperature: '体温'
   StepCount:       '歩数'
@@ -49,4 +50,6 @@ ja:
                   count: '歩'
           HKQuantityTypeIdentifierFlightsClimbed:
                   count: '階'
+          HKQuantityTypeIdentifierBodyMassIndex:
+                  count: 'BMI'
 
