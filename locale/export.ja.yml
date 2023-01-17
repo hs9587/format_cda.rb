@@ -31,6 +31,9 @@ ja:
   
   OxygenSaturation: '取り込まれた酸素のレベル'
 
+  ActiveEnergyBurned: 'アクティブエネルギー'
+  BasalEnergyBurned:  '安静時消費エネルギー'
+
   unit:
           kg:        'kg'
           count/min: '拍/分'
@@ -46,6 +49,7 @@ ja:
           min:       '分'
           days:      '日間'
           '%':       '%'
+          kcal:      'kcal'
           HKQuantityTypeIdentifierStepCount:
                   count: '歩'
           HKQuantityTypeIdentifierFlightsClimbed:

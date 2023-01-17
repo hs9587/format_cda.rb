@@ -29,6 +29,9 @@ en:
 
   OxygenSaturation: 'OxygenSaturation'
 
+  ActiveEnergyBurned: 'ActiveEnergyBurned'
+  BasalEnergyBurned:  'BasalEnergyBurned'
+
   unit:
           kg:        'kg'
           count/min: 'count/min'
@@ -44,6 +47,7 @@ en:
           min:       'min'
           days:      'days'
           '%':       '%'
+          kcal:      'lcal'
           HKQuantityTypeIdentifierStepCount:
                   count: 'count'
           HKQuantityTypeIdentifierFlightsClimbed:
