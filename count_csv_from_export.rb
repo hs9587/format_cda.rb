@@ -91,6 +91,18 @@ module Integrate
       '(%4.1f %s)' % [interval/60, u('min')]
     end # def minute(interval)
 
+    def hour_min(interval)
+      case interval
+      when 0...60*100 # 概ね1時間半以下
+        minute interval
+      when 60*91...3600*24 # 1日未満は、時間 分、表示/ 
+        time = Time.at(interval).utc
+        '(%2d%s%2d%s)' % [time.hour, u('hour'), time.min, u('min')]
+      else
+        days interval
+      end # if interval < 60*91 
+    end # def hour_min(interval)
+
     def days(interval)
       '(%4.1f %s)' % [interval/(60*60 * 24), u('days')]
     end # def days(interval)
@@ -123,7 +135,8 @@ class Counts < Hash
           sum, w, interval = self.integrate
           [['      %5d' % sum.to_i,
             '%s ' % u(first.unit, first.type),
-            minute(interval),
+            #minute(interval),
+            hour_min(interval),
             ].join(' ')]
         end # def arr.report
       when /DistanceWalkingRunning/ then

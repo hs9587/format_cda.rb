@@ -45,6 +45,7 @@ en:
           cm:        'cm'
           dBASPL:    'dBA SPL'
           min:       'min'
+          hour:      'hour'
           days:      'days'
           '%':       '%'
           kcal:      'kcal'
