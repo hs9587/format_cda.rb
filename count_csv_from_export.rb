@@ -116,7 +116,7 @@ class Counts < Hash
             ].join(' ')
           end # map do |row|
         end # def arr.report
-      when /StepCount/,/FlightsClimbed/ then
+      when /StepCount/,/FlightsClimbed/,/Burned/ then
         def arr.report
           #sum = inject(0){|s, row| s + row.value.to_i }
           #["      %d %s" % [sum, u(first.unit, first.type)]]

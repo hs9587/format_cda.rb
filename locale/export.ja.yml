@@ -56,4 +56,8 @@ ja:
                   count: '階'
           HKQuantityTypeIdentifierBodyMassIndex:
                   count: 'BMI'
+          HKQuantityTypeIdentifierActiveEnergyBurned:
+                  kcal:  'kcal'
+          HKQuantityTypeIdentifierBasalEnergyBurned:
+                  kcal:  'kcal'
 

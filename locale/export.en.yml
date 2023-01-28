@@ -47,11 +47,15 @@ en:
           min:       'min'
           days:      'days'
           '%':       '%'
-          kcal:      'lcal'
+          kcal:      'kcal'
           HKQuantityTypeIdentifierStepCount:
                   count: 'count'
           HKQuantityTypeIdentifierFlightsClimbed:
                   count: 'count'
           HKQuantityTypeIdentifierBodyMassIndex:
                   count: 'BMI'
+          HKQuantityTypeIdentifierActiveEnergyBurned:
+                  kcal:  'kcal'
+          HKQuantityTypeIdentifierBasalEnergyBurned:
+                  kcal:  'kcal'
 
