@@ -15,10 +15,12 @@ en:
 
   Height:             'Height'
   WaistCircumference: 'WaistCircumference'
-  DietarySodium:      'DietarySodium'
+  DietaryCalcium:     'DietaryCalcium'
   DietaryChloride:    'DietaryChloride'
+  DietaryPhosphorus:  'DietaryPhosphorus'
   DietaryPotassium:   'DietaryPotassium'
   DietaryProtein:     'DietaryProtein'
+  DietarySodium:      'DietarySodium'
   BloodGlucose:       'BloodGlucose'
 
   WalkingSpeed:                   'WalkingSpeed'

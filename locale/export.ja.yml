@@ -17,10 +17,12 @@ ja:
 
   Height:             '身長'
   WaistCircumference: '胴囲'
-  DietarySodium:      'ナトリウム'
+  DietaryCalcium:     'カルシウム'
   DietaryChloride:    '塩化物'
+  DietaryPhosphorus:  'リン'
   DietaryPotassium:   'カリウム'
-  DietaryProtein:     'たんぱく質'
+  DietaryProtein:     'タンパク質'
+  DietarySodium:      'ナトリウム'
   BloodGlucose:       '血糖値'
 
   WalkingSpeed:                   '歩行速度'
